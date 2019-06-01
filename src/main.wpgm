@@ -1,0 +1,38 @@
+import wollok.game.*
+
+program laLeyendaDePepita {
+
+
+	
+	//	CONFIG	
+	game.title("La Leyenda de Pepita")
+	game.height(15)
+	game.width(20)
+	game.ground("ground.png")
+
+	
+
+//	VISUALES
+	game.addVisual(jugador)
+
+	
+
+//  COLISIONES
+
+//	game.whenCollideDo(objetoX, {objetoY => objetoZ.hacerAlgo() })
+
+// wea
+//	TECLADO
+
+	keyboard.up().onPressDo { jugador.move(jugador.position().up(1)) }
+	keyboard.down().onPressDo { jugador.move(jugador.position().down(1)) }
+	keyboard.left().onPressDo { jugador.move(jugador.position().left(1)) }
+	keyboard.right().onPressDo { jugador.move(jugador.position().right(1)) }
+	
+	
+	
+//	START
+	game.start()
+		
+
+}
