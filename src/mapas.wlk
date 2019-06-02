@@ -2,7 +2,7 @@ import wollok.game.*
 import cosas.*
 
 class Mapa {
-	const objetosEnMapa
+	var property objetosEnMapa
 	
 	method limpiarMapa() {
 		objetosEnMapa.forEach( {objeto => game.removeVisual(objeto) })
@@ -29,59 +29,72 @@ object muroCompleto{
 	method arriba(){
 		if (posicionDelMuro < 18){
 			posicionDelMuro += 1
-			return [new Pared(position = game.at(posicionDelMuro, 14))] + self.arriba()
+			return [new Pared(position = game.at(posicionDelMuro, 14), direccion = direccion.arriba())] + self.arriba()
 		
 		} else {
 			posicionDelMuro = 0
-			return [new Pared(position = game.at(18, 14))]
+			return [new Pared(position = game.at(18, 14), direccion = direccion.arriba())]
 		}
 	}
 	method izquierda(){
 		if (posicionDelMuro < 13){
 			posicionDelMuro += 1
-			return [new Pared(position = game.at(0, posicionDelMuro))] + self.izquierda()
+			return [new Pared(position = game.at(0, posicionDelMuro), direccion = direccion.izquierda())] + self.izquierda()
 		
 		} else {
 			posicionDelMuro = 0
-			return [new Pared(position = game.at(0,13))]
+			return [new Pared(position = game.at(0,13), direccion = direccion.izquierda())]
 		}
 	}
 	method derecha(){
 		if (posicionDelMuro < 13){
 			posicionDelMuro += 1
-			return [new Pared(position = game.at(19, posicionDelMuro))] + self.derecha()
+			return [new Pared(position = game.at(19, posicionDelMuro), direccion = direccion.derecha())] + self.derecha()
 		
 		} else {
 			posicionDelMuro = 0
-			return [new Pared(position = game.at(19, 13))]
+			return [new Pared(position = game.at(19, 13), direccion = direccion.derecha())]
 		}
 	}
 	method abajo(){
 		if (posicionDelMuro < 18){
 			posicionDelMuro += 1
-			return [new Pared(position = game.at(posicionDelMuro, 0))] + self.abajo()
+			return [new Pared(position = game.at(posicionDelMuro, 0), direccion = direccion.abajo())] + self.abajo()
 		
 		} else {
 			posicionDelMuro = 0
-			return [new Pared(position = game.at(18, 0))]
+			return [new Pared(position = game.at(18, 0), direccion = direccion.abajo())]
 		}
 	}
 	method esquinas(){
-		return [new Pared(position = game.at(0, 0)), 
-				new Pared(position = game.at(0, 14)),
-				new Pared(position = game.at(19, 0)),
-				new Pared(position = game.at(19, 14))]
+		return [new Pared(position = game.at(0, 0), direccion = 5), 
+				new Pared(position = game.at(0, 14), direccion = 6),
+				new Pared(position = game.at(19, 0), direccion = 7),
+				new Pared(position = game.at(19, 14), direccion = 8)]
+	}
+	
+	method todo(){
+		return self.derecha() + self.abajo() + self.izquierda() + self.arriba() + self.esquinas()
 	}
 }
 
+object direccion{
+	method arriba() = 3
+	method abajo() = 1
+	method izquierda() = 2
+	method derecha() = 4
+}
+
 object sala_1 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.derecha()
-											 + muroCompleto.abajo()
-											 + muroCompleto.izquierda()
-											 + muroCompleto.arriba() 
-											 + muroCompleto.esquinas()
+											 + muroCompleto.todo()
 											 
-							) {		}
+							) {	
+								
+					method agregarAlgo(){
+					self.objetosEnMapa(self.objetosEnMapa())
+					}
+						
+							}
 
 
 

@@ -1,6 +1,7 @@
 class Pared {
 	const property position
-	method image() = "Pared.png"
+	const direccion
+	method image() = "Pared_"+ direccion +".png"
 	method puedeTraspasar() = false
 
 	
