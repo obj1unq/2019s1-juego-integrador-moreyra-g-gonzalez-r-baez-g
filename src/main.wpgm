@@ -15,6 +15,7 @@ program laLeyendaDePepita {
 
 //	VISUALES
 	game.addVisual(jugador)
+	game.addVisual(pepita)
 
 	
 
