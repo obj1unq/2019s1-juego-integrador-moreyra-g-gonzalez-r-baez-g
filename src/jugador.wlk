@@ -2,8 +2,8 @@ import wollok.game.*
 
 object jugador {
 
-	var property posicionXJugador = 0
-	var property posicionYJugador = 0
+	var property posicionXJugador = 1
+	var property posicionYJugador = 1
 	var property direccionPersonaje = 1
 	
 	method image() = "Jugador_posicion_" + direccionPersonaje + ".png"

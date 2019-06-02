@@ -1,5 +1,6 @@
 import wollok.game.*
 import jugador.*
+import mapas.*
 
 program laLeyendaDePepita {
 
@@ -14,6 +15,7 @@ program laLeyendaDePepita {
 	
 
 //	VISUALES
+	sala_1.cargarMapa()
 	game.addVisual(jugador)
 	game.addVisual(pepita)
 
