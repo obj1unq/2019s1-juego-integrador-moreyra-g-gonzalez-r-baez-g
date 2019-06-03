@@ -85,7 +85,18 @@ object direccion{
 	method derecha() = 4
 }
 
-object sala_1 inherits Mapa (objetosEnMapa =   [mapa_1 ] + muroCompleto.todo()){}
+object sala_1 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
+											 + muroCompleto.todo()
+											 + [puerta_1_1] )   {	}
+
+object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
+											 + muroCompleto.todo()
+											 + [puerta_2_1] )   {	}
+
+
+
+object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
+											 + muroCompleto.todo() )   {	}
 
 
 

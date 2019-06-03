@@ -1,6 +1,7 @@
 import wollok.game.*
 import jugador.*
 import mapas.*
+import colisiones.*
 
 program laLeyendaDePepita {
 
@@ -24,6 +25,7 @@ program laLeyendaDePepita {
 //  COLISIONES
 
 //	game.whenCollideDo(objetoX, {objetoY => objetoZ.hacerAlgo() })
+	agregarColisiones.jugador()
 
 
 //	TECLADO
