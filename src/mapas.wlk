@@ -85,16 +85,7 @@ object direccion{
 	method derecha() = 4
 }
 
-object sala_1 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo()
-											 
-							) {	
-								
-					method agregarAlgo(){
-					self.objetosEnMapa(self.objetosEnMapa())
-					}
-						
-							}
+object sala_1 inherits Mapa (objetosEnMapa =   [mapa_1 ] + muroCompleto.todo()){}
 
 
 
