@@ -11,23 +11,38 @@ object jugador {
 	
 
 	method moverEnX(direccion){
+		self.cambiarImagenHorizontal(direccion)
 		if (direccion == 1 && self.noHayObjetoDerecha()){
-			self.direccionPersonaje(self.derecha())
 			posicionXJugador += direccion
 		} else if (direccion == -1 && self.noHayObjetoIzquierda()){
-			self.direccionPersonaje(self.izquierda())
 			posicionXJugador += direccion
 		}
 	}
 	method moverEnY(direccion) {
+		self.cambiarImagenVertical(direccion)
 		if (direccion == 1 && self.noHayObjetoArriba()){
-			self.direccionPersonaje(self.arriba())
+			
 			posicionYJugador += direccion
 		} else if (direccion == -1 && self.noHayObjetoAbajo()){
-			self.direccionPersonaje(self.abajo())
+	
 			posicionYJugador += direccion
 		} 
 	}
+	method cambiarImagenHorizontal(direccion){
+		if (direccion == 1){
+			self.direccionPersonaje(self.derecha())
+		} else {
+			self.direccionPersonaje(self.izquierda())
+		}
+	}
+	method cambiarImagenVertical(direccion) {
+		if (direccion == 1){
+			self.direccionPersonaje(self.arriba())
+		} else {
+			self.direccionPersonaje(self.abajo())
+		} 
+	}
+	
 	method derecha() = 4
 	method izquierda() = 2
 	method arriba() = 3
