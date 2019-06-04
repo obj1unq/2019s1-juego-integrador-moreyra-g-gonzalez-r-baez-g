@@ -45,17 +45,18 @@ class Puerta {
 
 class Boton{
 	const property position
-	const property direccion
+	const property direccion	
 	var estaActivado = false
+	
 	
 	method image(){ return
 		   if (estaActivado){
-			     "botonPresionado"
+			     "boton_activado.png"
 		}
 		
-		   else  "botonSinPresionar"
+		   else  "boton_desactivado.png"
 	}
-	method esTraspasable() = false
+	method esTraspasable() = true
 	method chocar(){
 		estaActivado = true
 		
@@ -64,6 +65,10 @@ class Boton{
 	
 	 
 }
+
+object boton1 inherits Boton (position = game.at(5,10)) {  }
+	
+
 
 
 object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
