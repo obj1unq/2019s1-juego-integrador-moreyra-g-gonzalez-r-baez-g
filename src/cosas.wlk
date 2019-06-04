@@ -9,17 +9,12 @@ class Pared {
 	method image() = "Pared_"+ direccion +".png"
 	method id() = 1
 
-<<<<<<< HEAD
 	method esTraspasable() = self.hayPuertaEn(position)
 	method hayPuertaEn(posicion){
 		return game.getObjectsIn(posicion).any({ objeto => objeto.id() == id.puerta() })
 	}
 	
-=======
-	method hayPuerta(){
-		
-	}
->>>>>>> branch 'master' of https://github.com/obj1unq/2019s1-juego-integrador-moreyra-g-gonzalez-r-baez-g.git
+
 }
 
 class Puerta {
@@ -47,9 +42,6 @@ class Puerta {
 	}
 }
 
-<<<<<<< HEAD
-object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
-=======
 
 class Boton{
 	const property position
@@ -74,8 +66,7 @@ class Boton{
 }
 
 
-object puerta_1_1 inherits Puerta	(position = game.at(7, 13), salaActual = sala_1, salaSiguiente = sala_2,
->>>>>>> branch 'master' of https://github.com/obj1unq/2019s1-juego-integrador-moreyra-g-gonzalez-r-baez-g.git
+object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
 									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
 									){    }
 
