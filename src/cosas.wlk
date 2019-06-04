@@ -9,7 +9,9 @@ class Pared {
 	method image() = "Pared_"+ direccion +".png"
 	method esTraspasable() = false
 
-	
+	method hayPuerta(){
+		
+	}
 }
 
 class Puerta {
@@ -35,6 +37,30 @@ class Puerta {
 		agregarColisiones.jugador()
 	}
 }
+
+
+class Boton{
+	const property position
+	const property direccion
+	var estaActivado = false
+	
+	method image(){ return
+		   if (estaActivado){
+			     "botonPresionado"
+		}
+		
+		   else  "botonSinPresionar"
+	}
+	method esTraspasable() = false
+	method chocar(){
+		estaActivado = true
+		
+	}
+	
+	
+	 
+}
+
 
 object puerta_1_1 inherits Puerta	(position = game.at(7, 13), salaActual = sala_1, salaSiguiente = sala_2,
 									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
