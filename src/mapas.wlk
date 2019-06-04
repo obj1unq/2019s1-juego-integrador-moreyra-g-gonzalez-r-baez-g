@@ -20,8 +20,8 @@ class Mapa {
 object mapa_1 {
 	method position() = game.at(0, 0)
 	method image() = "Mapa_1.png"
-	
-}
+	method id() = 0
+} 
 object muroCompleto{
 	
 	var posicionDelMuro = 0

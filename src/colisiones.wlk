@@ -8,3 +8,10 @@ object agregarColisiones {
 	}
 	
 }
+
+object id {
+	method puerta() = 2
+	method pared() = 1
+	method pepita() = 3
+	method jugador() = 4
+}

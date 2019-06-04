@@ -6,6 +6,7 @@ object jugador {
 	var property posicionYJugador = 1
 	var property direccionPersonaje = 1
 	
+	method id() = 4
 	method image() = "Jugador_posicion_" + direccionPersonaje + ".png"
 	method position() = game.at(posicionXJugador,posicionYJugador)
 	
@@ -73,5 +74,6 @@ object pepita{
 	method position() = game.at(9,9)
 	method image() = "pepita.png" 
 	method esTraspasable() = false
+	method id() = 3
 }
 

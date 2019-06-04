@@ -7,8 +7,12 @@ class Pared {
 	const property position
 	const direccion
 	method image() = "Pared_"+ direccion +".png"
-	method esTraspasable() = false
+	method id() = 1
 
+	method esTraspasable() = self.hayPuertaEn(position)
+	method hayPuertaEn(posicion){
+		return game.getObjectsIn(posicion).any({ objeto => objeto.id() == id.puerta() })
+	}
 	
 }
 
@@ -19,6 +23,7 @@ class Puerta {
 	const property transportarJugadorCoordenadaX
 	const property transportarJugadorCoordenadaY
 	
+	method id() = 2
 	method image() = "Puerta_1.png"
 	method esTraspasable() = true
 	method chocar() {
@@ -36,10 +41,10 @@ class Puerta {
 	}
 }
 
-object puerta_1_1 inherits Puerta	(position = game.at(7, 13), salaActual = sala_1, salaSiguiente = sala_2,
+object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
 									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
 									){    }
 
-object puerta_2_1 inherits Puerta	(position = game.at(7, 13), salaActual = sala_2, salaSiguiente = sala_3,
+object puerta_2_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_2, salaSiguiente = sala_3,
 									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
 									){    }
