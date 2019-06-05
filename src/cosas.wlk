@@ -58,17 +58,29 @@ class Boton{
 	}
 	method esTraspasable() = true
 	method chocar(){
-		estaActivado = true
+		estaActivado = true	
 		
 	}
 	
-	
-	 
+			 
 }
 
+class Caja{
+	const property position
+	const property direccion	
+	
+	
+	
+	method image() = "box.png"
+	
+	method esTraspasable() = false
+	method chocar(){	}
+	
+			 		
+}
 object boton1 inherits Boton (position = game.at(5,10)) {  }
 	
-
+object caja1 inherits Caja (position = game. at (10,7)) {  }
 
 
 object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
