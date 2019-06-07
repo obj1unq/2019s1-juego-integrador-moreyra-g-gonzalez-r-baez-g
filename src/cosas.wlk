@@ -37,9 +37,15 @@ class Puerta {
 		salaActual.limpiarMapa()
 		salaSiguiente.cargarMapa()
 		self.moverJugador()
-		
+		self.ejecutarAtaque()
 
 	}
+	method ejecutarAtaque(){
+		 if(salaSiguiente == sala_3){
+			game.addVisual(alarmaDeFuego)
+			game.onTick(2000,"incendiar",{alarmaDeFuego.cambiarAFuego()})
+		}
+	} 
 	
 	method moverJugador(){
 		game.removeVisual(jugador)
@@ -50,6 +56,18 @@ class Puerta {
 	}
 }
 
+object alarmaDeFuego{
+	const property position = game.at(10,10)
+	var imagen = "1.png"
+	method image()= imagen
+	method esTraspasable()=true
+	method cambiarAFuego(){
+		 imagen = "2.png"
+		 game.onTick(2000,"sacar alarma",{game.removeVisual(self)})
+		 game.removeOnTick("sacar alarma")
+	}
+	method chocar(){}
+}
 
 class Boton{
 	const property position
