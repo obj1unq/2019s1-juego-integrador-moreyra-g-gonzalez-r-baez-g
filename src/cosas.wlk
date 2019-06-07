@@ -13,8 +13,13 @@ class Pared {
 	method hayPuertaEn(posicion){
 		return game.getObjectsIn(posicion).any({ objeto => objeto.id() == id.puerta() })
 	}
-	
+}
+class ParedBoss {
+	const property position
+	method image() = "MuroBoss_1.png"
+	method id() = 1
 
+	method esTraspasable() = false
 }
 
 class Puerta {
