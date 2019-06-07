@@ -43,7 +43,10 @@ class Puerta {
 	method ejecutarAtaque(){
 		 if(salaSiguiente == sala_3){
 			game.addVisual(alarmaDeFuego)
-			game.onTick(2000,"incendiar",{alarmaDeFuego.cambiarAFuego()})
+			game.onTick(2000,"incendiar",{
+				alarmaDeFuego.cambiarAFuego()
+				game.removeTickEvent("incendiar")
+			})
 		}
 	} 
 	
@@ -63,8 +66,11 @@ object alarmaDeFuego{
 	method esTraspasable()=true
 	method cambiarAFuego(){
 		 imagen = "2.png"
-		 game.onTick(2000,"sacar alarma",{game.removeVisual(self)})
-		 game.removeOnTick("sacar alarma")
+		 game.onTick(2000,"sacar alarma",{
+		 	game.removeVisual(self)
+		 	game.removeTickEvent("sacar alarma")
+		 })
+		 
 	}
 	method chocar(){}
 }
