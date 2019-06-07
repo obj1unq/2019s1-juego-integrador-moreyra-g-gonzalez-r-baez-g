@@ -71,7 +71,7 @@ object jugador {
 }
 
 object pepita{
-	method position() = game.at(9,9)
+	method position() = game.at(18,13)
 	method image() = "pepita.png" 
 	method esTraspasable() = false
 	method id() = 3
@@ -81,5 +81,6 @@ object boss{
 	method position() = game.at(11,10)
 	method image() = "boss.png"
 	method id() = 27
+	method esTraspasable()= true
 }
 

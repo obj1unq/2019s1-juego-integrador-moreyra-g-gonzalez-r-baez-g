@@ -122,7 +122,7 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo() + [boss] + muroBoss.todo() )   {	} //17,1-13
+											 + muroCompleto.todo() + [boss] + muroBoss.todo() + [pepita] )   {	} //17,1-13
 
 
 
