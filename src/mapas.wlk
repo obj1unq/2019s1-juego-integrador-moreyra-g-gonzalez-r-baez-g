@@ -27,7 +27,7 @@ object mapa_1 {
 object mapa_2{
 	method position() = game.at(0, 0)
 	method image() = "MakingMap1.png"
-	method id() = 0
+	method id() = 5
 }
 
 object muroCompleto{
@@ -113,7 +113,9 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + muroCompleto.todo()
 											 + [puerta_1_1]
 											 + [boton1]
-											 + [caja1] )  {	 }
+											 + [caja1] 
+											 + [llave]
+											 + [nota])  {	 }
 
 object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
 											 + muroCompleto.todo()

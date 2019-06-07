@@ -2,6 +2,7 @@ import wollok.game.*
 import jugador.*
 import mapas.*
 import colisiones.*
+import direcciones.*
 
 class Pared {
 	const property position
@@ -33,9 +34,11 @@ class Puerta {
 	method image() = "Puerta_1.png"
 	method esTraspasable() = true
 	method chocar() {
+	
 		salaActual.limpiarMapa()
 		salaSiguiente.cargarMapa()
 		self.moverJugador()
+
 	}
 	
 	method moverJugador(){
@@ -66,20 +69,63 @@ class Boton{
 		estaActivado = true	
 		
 	}
+				 
+}
+
+object nota{
 	
-			 
+	const property position = game.at(4,4)
+	
+	
+	method image() = "nota.png"
+	method esTraspasable()= true
+	method chocar(){
+		game.say(jugador,"Combinacion de botones a pisar")
+	}
+}
+
+
+object llave{
+	const property position = game.at(10,2)
+	
+	method image() = "secret_key_.png"
+	method esTraspasable()= true
+	
+	method chocar(){
+		
+		jugador.agarrarLlave()
+		game.removeVisual(self)
+	}
+	
 }
 
 class Caja{
-	const property position
-	const property direccion	
-	
+	var   property position 
 	
 	
 	method image() = "box.png"
 	
+	
 	method esTraspasable() = false
-	method chocar(){	}
+	
+	method chocar(){ }
+	
+	method moverseConJugador(){
+		self.validarPosicion(jugador.direction())
+		position = jugador.direction().siguiente(position)
+	}
+	
+	method validarPosicion(direccion){
+		const posicionSig = direccion.siguiente()
+		var esLugarLibre = game.getObjectsIn(posicionSig)
+		  if (not esLugarLibre.all({objeto => objeto.esTraspasable()})){
+		        game.say(self,"No se puede mover")
+		   }     
+		        
+		  else {}     
+	}
+	
+	
 	
 			 		
 }

@@ -1,15 +1,20 @@
 import wollok.game.*
+import direcciones.*
 
 object jugador {
 
 	var property posicionXJugador = 1
 	var property posicionYJugador = 1
 	var property direccionPersonaje = 1
+	var property direction = arriba
+	var property tieneLlave = false
 	
 	method id() = 4
 	method image() = "Jugador_posicion_" + direccionPersonaje + ".png"
 	method position() = game.at(posicionXJugador,posicionYJugador)
-	
+	method agarrarLlave(){
+		tieneLlave = true
+	}
 
 	method moverEnX(direccion){
 		self.cambiarImagenHorizontal(direccion)
@@ -29,6 +34,17 @@ object jugador {
 			posicionYJugador += direccion
 		} 
 	}
+	
+	method moverEnXConCaja(direccion,caja){
+		self.moverEnX(direccion)
+		caja.moverseConJugador()
+	}
+	
+	method moverEnYConCaja(direccion,caja){
+		self.moverEnX(direccion)
+		caja.moverseConJugador()
+	}
+	
 	method cambiarImagenHorizontal(direccion){
 		if (direccion == 1){
 			self.direccionPersonaje(self.derecha())
@@ -43,6 +59,9 @@ object jugador {
 			self.direccionPersonaje(self.abajo())
 		} 
 	}
+	
+	
+	
 	
 	method derecha() = 4
 	method izquierda() = 2
