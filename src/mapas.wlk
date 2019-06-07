@@ -124,7 +124,7 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo() + [boss] + muroBoss.todo() + [pepita] )   {	} //17,1-13
+											 + muroCompleto.todo() + muroBoss.todo()+ [boss] + [pepita] )   {	} // ataque x = 1-16, y = 1,13, boss 3-17
 
 
 

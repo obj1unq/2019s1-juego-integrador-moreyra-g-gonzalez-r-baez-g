@@ -3,6 +3,7 @@ import jugador.*
 import mapas.*
 import colisiones.*
 import direcciones.*
+import ataques.*
 
 class Pared {
 	const property position
@@ -37,18 +38,23 @@ class Puerta {
 		salaActual.limpiarMapa()
 		salaSiguiente.cargarMapa()
 		self.moverJugador()
-		self.ejecutarAtaque()
+		self.ejecutarAtaque(salaSiguiente)
 
 	}
-	method ejecutarAtaque(){
-		 if(salaSiguiente == sala_3){
-			game.addVisual(alarmaDeFuego)
-			game.onTick(2000,"incendiar",{
-				alarmaDeFuego.cambiarAFuego()
-				game.removeTickEvent("incendiar")
-			})
-		}
-	} 
+	method ejecutarAtaque(sala){
+		new RondaDeAtaques(ataques = [new Ataque(position = game.at(10,10)),new Ataque(position = game.at(2,10))]).lanzarAtaque(sala)
+	}
+	
+	
+	//method ejecutarAtaque(){
+		// if(salaSiguiente == sala_3){
+		//	game.addVisual(alarmaDeFuego)
+		//	game.onTick(2000,"incendiar",{
+		//		alarmaDeFuego.cambiarAFuego()
+		//		game.removeTickEvent("incendiar")
+		//	})
+		//}
+	 
 	
 	method moverJugador(){
 		game.removeVisual(jugador)
@@ -59,21 +65,21 @@ class Puerta {
 	}
 }
 
-object alarmaDeFuego{
-	const property position = game.at(10,10)
-	var imagen = "1.png"
-	method image()= imagen
-	method esTraspasable()=true
-	method cambiarAFuego(){
-		 imagen = "2.png"
-		 game.onTick(2000,"sacar alarma",{
-		 	game.removeVisual(self)
-		 	game.removeTickEvent("sacar alarma")
-		 })
+//object alarmaDeFuego{
+//	const property position = game.at(10,10)
+//	var imagen = "1.png"
+//	method image()= imagen
+//	method esTraspasable()=true
+//	method cambiarAFuego(){
+//		 imagen = "2.png"
+//		 game.onTick(2000,"sacar alarma",{
+//		 	game.removeVisual(self)
+//		 	game.removeTickEvent("sacar alarma")
+//		 })
 		 
-	}
-	method chocar(){}
-}
+//	}
+//	method chocar(){}
+//}
 
 class Boton{
 	const property position
