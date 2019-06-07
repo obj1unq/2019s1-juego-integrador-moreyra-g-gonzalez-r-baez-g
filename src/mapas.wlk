@@ -1,5 +1,6 @@
 import wollok.game.*
 import cosas.*
+import jugador.*
 
 class Mapa {
 	var property objetosEnMapa
@@ -105,7 +106,7 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo() )   {	}
+											 + muroCompleto.todo() + [boss] )   {	}
 
 
 

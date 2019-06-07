@@ -77,3 +77,9 @@ object pepita{
 	method id() = 3
 }
 
+object boss{
+	method position() = game.at(11,10)
+	method image() = "boss.png"
+	method id() = 27
+}
+
