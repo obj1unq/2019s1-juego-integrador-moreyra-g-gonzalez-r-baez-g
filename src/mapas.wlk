@@ -114,7 +114,7 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + [puerta_1_1]
 											 + [boton1]
 											 + [caja1] 
-											 + [llave]
+											 //aca estaba lla llave, al sacarselo cuando lo agarras tiraba un error el comando limpiar mapa
 											 + [nota])  {	 }
 
 object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ] 

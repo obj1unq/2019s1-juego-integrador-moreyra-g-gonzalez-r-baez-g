@@ -2,7 +2,7 @@ import wollok.game.*
 import jugador.*
 import mapas.*
 import colisiones.*
-
+import cosas.*
 program laLeyendaDePepita {
 
 
@@ -18,7 +18,7 @@ program laLeyendaDePepita {
 //	VISUALES
 	sala_1.cargarMapa()
 	game.addVisual(jugador)
-
+	game.addVisual(llave) // esto es temporal para probar el error
 	
 
 //  COLISIONES

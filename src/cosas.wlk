@@ -34,10 +34,10 @@ class Puerta {
 	method image() = "Puerta_1.png"
 	method esTraspasable() = true
 	method chocar() {
-	
 		salaActual.limpiarMapa()
 		salaSiguiente.cargarMapa()
 		self.moverJugador()
+		
 
 	}
 	
