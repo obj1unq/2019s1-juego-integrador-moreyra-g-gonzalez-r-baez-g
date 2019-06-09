@@ -20,10 +20,11 @@ class RondaDeAtaques {
  	method lanzarAtaque(sala){
  		if(sala == sala_3){
  			game.addVisual(self)
+
  			game.onTick(tiempo,"incendio"+numeroDeAtaque,{
-				self.cambiarAFuego()
-				game.removeTickEvent("incendio"+numeroDeAtaque)
-			})
+ 				self.cambiarAFuego()
+ 				game.removeTickEvent("incendio"+numeroDeAtaque)
+ 			})
  		}
  	}
  	method cambiarAFuego(){
