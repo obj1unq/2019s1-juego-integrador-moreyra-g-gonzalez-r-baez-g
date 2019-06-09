@@ -38,23 +38,12 @@ class Puerta {
 		salaActual.limpiarMapa()
 		salaSiguiente.cargarMapa()
 		self.moverJugador()
-		self.ejecutarAtaque(salaSiguiente)
+		self.activarBoss(salaSiguiente)
 
 	}
-	method ejecutarAtaque(sala){
-		new RondaDeAtaques(ataques = [new Ataque(position = game.at(10,10)),new Ataque(position = game.at(2,10))]).lanzarAtaque(sala)
+	method activarBoss(sala){
+		boss.atacar(sala)
 	}
-	
-	
-	//method ejecutarAtaque(){
-		// if(salaSiguiente == sala_3){
-		//	game.addVisual(alarmaDeFuego)
-		//	game.onTick(2000,"incendiar",{
-		//		alarmaDeFuego.cambiarAFuego()
-		//		game.removeTickEvent("incendiar")
-		//	})
-		//}
-	 
 	
 	method moverJugador(){
 		game.removeVisual(jugador)
@@ -64,23 +53,6 @@ class Puerta {
 		agregarColisiones.jugador()
 	}
 }
-
-//object alarmaDeFuego{
-//	const property position = game.at(10,10)
-//	var imagen = "1.png"
-//	method image()= imagen
-//	method esTraspasable()=true
-//	method cambiarAFuego(){
-//		 imagen = "2.png"
-//		 game.onTick(2000,"sacar alarma",{
-//		 	game.removeVisual(self)
-//		 	game.removeTickEvent("sacar alarma")
-//		 })
-		 
-//	}
-//	method chocar(){}
-//}
-
 class Boton{
 	const property position
 	const property direccion	
@@ -171,3 +143,6 @@ object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_
 object puerta_2_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_2, salaSiguiente = sala_3,
 									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
 									){    }
+object puerta_3_1 inherits Puerta	(position = game.at(0,1), salaActual = sala_3, salaSiguiente = sala_3,
+									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
+									){    }									

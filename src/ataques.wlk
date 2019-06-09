@@ -13,22 +13,24 @@ class RondaDeAtaques {
  class Ataque{
  	var property position
  	var property image = "1.png"
- 	method esTrasPasable()=true
+ 	var property tiempo
+ 	var property numeroDeAtaque
+ 	method esTraspasable()=true
  	method chocar(){}
  	method lanzarAtaque(sala){
  		if(sala == sala_3){
  			game.addVisual(self)
- 			game.onTick(2000,"incendiar",{
+ 			game.onTick(tiempo,"incendio"+numeroDeAtaque,{
 				self.cambiarAFuego()
-				game.removeTickEvent("incendiar")
+				game.removeTickEvent("incendio"+numeroDeAtaque)
 			})
  		}
  	}
  	method cambiarAFuego(){
 		 self.image("2.png")
-		 game.onTick(2000,"sacar alarma",{
+		 game.onTick(tiempo/2,"cambiar incendio"+numeroDeAtaque,{
 		 	game.removeVisual(self)
-		 	game.removeTickEvent("sacar alarma")
+		 	game.removeTickEvent("cambiar incendio" +numeroDeAtaque)
 		 })
 	}
  }

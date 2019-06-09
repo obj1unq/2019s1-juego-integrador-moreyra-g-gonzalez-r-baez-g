@@ -1,5 +1,7 @@
 import wollok.game.*
 import direcciones.*
+import cosas.*
+import ataques.*
 
 object jugador {
 
@@ -101,5 +103,15 @@ object boss{
 	method image() = "boss.png"
 	method id() = 27
 	method esTraspasable()= true
+	
+	method atacar(sala){
+		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
+	
+	}
+	
+	
+	method ataqueFila(n){
+				return	[1,2,3,4,5,6,7,8,9,10,11,12,13].map{numero=> new Ataque(position = game.at(n,numero),tiempo =500,numeroDeAtaque =n*100+numero)}								  								  								  										  							  								  									  									  									  		
+	}
 }
 
