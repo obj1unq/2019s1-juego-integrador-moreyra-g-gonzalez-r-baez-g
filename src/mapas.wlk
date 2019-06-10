@@ -119,7 +119,8 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 
 object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
 											 + muroCompleto.todo()
-											 + [puerta_2_1] )   {	}
+											 + [puerta_2_1] 
+											 + [puerta_2_2])   {	}
 
 
 

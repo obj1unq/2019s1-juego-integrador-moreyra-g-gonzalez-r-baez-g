@@ -7,7 +7,7 @@ import ataques.*
 
 class Pared {
 	const property position
-	const direccion
+	const property direccion
 	method image() = "Pared_"+ direccion +".png"
 	method id() = 1
 
@@ -30,9 +30,10 @@ class Puerta {
 	const property salaSiguiente
 	const property transportarJugadorCoordenadaX
 	const property transportarJugadorCoordenadaY
+	const direccion
 	
 	method id() = 2
-	method image() = "Puerta_1.png"
+	method image() = "Puerta_"+ direccion +".png"
 	method esTraspasable() = true
 	method chocar() {
 		salaActual.limpiarMapa()
@@ -52,6 +53,10 @@ class Puerta {
 		game.addVisual(jugador)
 		agregarColisiones.jugador()
 	}
+	
+
+	
+	
 }
 class Boton{
 	const property position
@@ -137,12 +142,19 @@ object caja1 inherits Caja (position = game. at (10,7)) {  }
 
 
 object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
-									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
+									 transportarJugadorCoordenadaX = 7, transportarJugadorCoordenadaY = 1, direccion = 3
 									){    }
 
-object puerta_2_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_2, salaSiguiente = sala_3,
-									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
+object puerta_2_1 inherits Puerta	(position = game.at(1, 14), salaActual = sala_2, salaSiguiente = sala_3,
+									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1, direccion = 3
 									){    }
-object puerta_3_1 inherits Puerta	(position = game.at(0,1), salaActual = sala_3, salaSiguiente = sala_3,
-									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1
-									){    }									
+									
+object puerta_2_2 inherits Puerta	(position = game.at(7, 0), salaActual = sala_2, salaSiguiente = sala_1,
+									 transportarJugadorCoordenadaX = 7, transportarJugadorCoordenadaY = 13, direccion = 1
+									){    }
+									
+object puerta_3_1 inherits Puerta	(position = game.at(1,0), salaActual = sala_3, salaSiguiente = sala_3,
+									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1, direccion = 1
+									){
+									override method esTraspasable() = false									
+									}									
