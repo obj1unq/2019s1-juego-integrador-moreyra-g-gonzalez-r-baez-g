@@ -10,9 +10,11 @@ object jugador {
 	var property direccionPersonaje = 1
 	var property direction = arriba
 	var property tieneLlave = false
+	var property estadoPj = self.normal()
+	var tiempoDeAtaque = 0	
 	
 	method id() = 4
-	method image() = "Jugador_posicion_" + direccionPersonaje + ".png"
+	method image() = "Jugador_posicion_" + direccionPersonaje + estadoPj + ".png"
 	method position() = game.at(posicionXJugador,posicionYJugador)
 	method agarrarLlave(){
 		tieneLlave = true
@@ -36,6 +38,7 @@ object jugador {
 			posicionYJugador += direccion
 		} 
 	}
+	
 	
 	method moverEnXConCaja(direccion,caja){
 		self.moverEnX(direccion)
@@ -90,7 +93,69 @@ object jugador {
 	method listaDeObjetosDerecha() = game.getObjectsIn(game.at(self.posicionXJugador()+1,self.posicionYJugador()))
 	method listaDeObjetosIzquierda() = game.getObjectsIn(game.at(self.posicionXJugador()-1,self.posicionYJugador()))
 	
+	
+	method atacar(){
+		if (tiempoDeAtaque == 0){ 
+			self.listaDeObjetosAdelante().forEach({ objeto => objeto.serGolpeado()})
+			self.atacarPrima()
 
+			
+		}
+	}
+	
+	method listaDeObjetosAdelante() = game.getObjectsIn(self.adelante())
+	
+	method atacarPrima(){
+
+		var posicionInicial = self.position()
+			
+		espada.direccion(direccionPersonaje)
+		espada.position(self.adelante())
+		self.estadoPj(self.ataque())
+		espada.agregarVisual()
+		
+		game.onTick(10, "ataque", {
+			if (tiempoDeAtaque >= 10 || self.position() != posicionInicial ){
+				espada.removerVisual()
+				game.removeTickEvent("ataque")
+				self.estadoPj(self.normal())
+				tiempoDeAtaque = 0
+			} else {
+				tiempoDeAtaque ++
+			}
+		})
+//		game.onTick(300, "ataque", {espada.removerVisual() 
+//									self.estadoPj(self.normal())
+//									game.removeTickEvent("ataque")
+//		})
+
+		
+	}
+	method defender(){
+		self.estadoPj(self.defensa())
+		game.onTick(300, "defensa", {self.estadoPj(self.normal())
+									 game.removeTickEvent("defensa")
+		})
+	}
+	
+//	method adelante() = direction.siguiente(self.position())
+	
+	method adelante() {
+		if (direccionPersonaje == self.arriba() ){
+			return self.position().up(1)
+		} else if(direccionPersonaje == self.izquierda()) {
+			return self.position().left(1)
+		} else if(direccionPersonaje == self.abajo()) {
+			return self.position().down(1)
+		} else {
+			return self.position().right(1)
+		}
+	}
+	
+	method normal() = ""
+	method ataque() = "_ataque"
+	method defensa() = "_defensa"
+	
 }
 
 object pepita{
@@ -98,6 +163,8 @@ object pepita{
 	method image() = "pepita.png" 
 	method esTraspasable() = false
 	method id() = 3
+	
+	method serGolpeado(){/* No hace nada */ game.say(self, "ay")}	
 }
 
 object boss{

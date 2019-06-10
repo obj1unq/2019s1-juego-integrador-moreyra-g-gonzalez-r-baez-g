@@ -38,7 +38,8 @@ program laLeyendaDePepita {
 	keyboard.down().onPressDo 	{jugador.moverEnY(-1)}
 	keyboard.left().onPressDo 	{jugador.moverEnX(-1)}
 	keyboard.right().onPressDo	{jugador.moverEnX(1)}
-	
+	keyboard.z().onPressDo {jugador.atacar()}
+	keyboard.x().onPressDo {jugador.defender()}
 	
 //	START
 	game.start()
