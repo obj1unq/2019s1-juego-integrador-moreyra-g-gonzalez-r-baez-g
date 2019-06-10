@@ -108,6 +108,7 @@ object jugador {
 	method atacarPrima(){
 
 		var posicionInicial = self.position()
+		var direccionInicial = self.direccionPersonaje()
 			
 		espada.direccion(direccionPersonaje)
 		espada.position(self.adelante())
@@ -115,7 +116,7 @@ object jugador {
 		espada.agregarVisual()
 		
 		game.onTick(10, "ataque", {
-			if (tiempoDeAtaque >= 10 || self.position() != posicionInicial ){
+			if (tiempoDeAtaque >= 10 || self.position() != posicionInicial || self.direccionPersonaje() != direccionInicial ){
 				espada.removerVisual()
 				game.removeTickEvent("ataque")
 				self.estadoPj(self.normal())
