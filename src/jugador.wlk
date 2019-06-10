@@ -164,7 +164,7 @@ object pepita{
 	method esTraspasable() = false
 	method id() = 3
 	
-	method serGolpeado(){/* No hace nada */ game.say(self, "ay")}	
+	method serGolpeado(){ game.say(self, "ay") }	
 }
 
 object boss{
@@ -182,5 +182,7 @@ object boss{
 	method ataqueFila(n){
 				return	[1,2,3,4,5,6,7,8,9,10,11,12,13].map{numero=> new Ataque(position = game.at(n,numero),tiempo =500,numeroDeAtaque =n*100+numero)}								  								  								  										  							  								  									  									  									  		
 	}
+	
+	method serGolpeado(){ /* No hace nada */}
 }
 
