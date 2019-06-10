@@ -11,14 +11,17 @@ class Mapa {
 	
 	method cargarMapa() {
 		objetosEnMapa.forEach({ objeto => game.addVisual(objeto) })		
-		// Quizás haga falta un " crearColisiones() "
-		// o un objetosEnMapa.foreach({ objeto => objeto.crearColisiones() })
+		self.activarBoss()
 	}
 	
 	method removerObjeto(objeto){
 		game.removeVisual(objeto)
 		objetosEnMapa.remove(objeto)
 	}	
+
+	method activarBoss(){
+		//No hace nada
+	}
 	
 }
 
@@ -119,7 +122,11 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo() + muroBoss.todo()+ [puerta_3_1] + [boss] + [pepita] )   {	} // ataque x = 1-16, y = 1,13, boss 3-17
+											 + muroCompleto.todo() + muroBoss.todo()+ [puerta_3_1] + [boss] + [pepita] )   {
+											 	override method activarBoss(){
+											 		boss.atacar(self)
+											 	}
+											 } // ataque x = 1-16, y = 1,13, boss 3-17
 
 
 

@@ -42,11 +42,7 @@ class Puerta {
 		salaActual.limpiarMapa()
 		salaSiguiente.cargarMapa()
 		self.moverJugador()
-		self.activarBoss(salaSiguiente)
 
-	}
-	method activarBoss(sala){
-		boss.atacar(sala)
 	}
 	
 	method moverJugador(){

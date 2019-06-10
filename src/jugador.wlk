@@ -120,28 +120,37 @@ object pepita{
 }
 
 object boss{
-	var tiempoDeAtaque
+	
 	var property vida = 3
+	var property sePuedeAtacar = false
 	method position() = game.at(17,3)
 	method image() = "boss.png"
 	method id() = 27
 	method esTraspasable()= true
+	method estaVivo(){
+		return vida>0
+	}
+	
 	
 	method atacar(sala){
+		if(self.estaVivo()){
 		self.atacarP(sala)
-		game.onTick(tiempoDeAtaque,"asdasdasd",{self.atacarP(sala) /*game.removeTickEvent("asdasdasd")*/})	
+		game.onTick(8500,"se puede atacar vos",{self.sePuedeAtacar(true) game.removeTickEvent("se puede atacar vos")})
+		game.onTick(12000,"recursion",{self.atacar(sala) game.removeTickEvent("recursion")})
+		}	
 	}
 	
 	method atacarP(sala){
-		self.rondaDeAtaque1(sala)
-		self.rondaDeAtaque2(sala)
+		self.rondaDeAtaque(sala)
+		
 	}
 	method serGolpeado(){
-		if(vida>0){
+		if(self.estaVivo() && sePuedeAtacar){
 			vida-=1
+			sePuedeAtacar = false
 		}
 	}
-	method rondaDeAtaque1(sala){
+	/*method rondaDeAtaque1(sala){
 		if(self.vida()==3){
 		tiempoDeAtaque = 20000
 		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(1000*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
@@ -149,14 +158,10 @@ object boss{
 		
 		}
 
-	}
-	method rondaDeAtaque2(sala){
-		if(self.vida()==2){
-		tiempoDeAtaque = 1000	
-		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
+	}*/
+	method rondaDeAtaque(sala){	
+		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero) self.sePuedeAtacar(false)})}
 		[2,4,6,8,10,12,14,16].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFilaEscape(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
-		
-		}
 //		game.onTick(15000,"asdasdasd",{self.atacar(sala) game.removeTickEvent("asdasdasd")})	
 	}
 	
