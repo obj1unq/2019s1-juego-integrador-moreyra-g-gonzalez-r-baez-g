@@ -29,17 +29,15 @@ program laLeyendaDePepita {
 
 //	TECLADO
 
-//	keyboard.up().onPressDo { jugador.move(jugador.position().up(1)) }
-//	keyboard.down().onPressDo { jugador.move(jugador.position().down(1)) }
-//	keyboard.left().onPressDo { jugador.move(jugador.position().left(1)) }
-//	keyboard.right().onPressDo { jugador.move(jugador.position().right(1)) }
-	
-	keyboard.up().onPressDo 	{jugador.moverEnY(1)}
-	keyboard.down().onPressDo 	{jugador.moverEnY(-1)}
-	keyboard.left().onPressDo 	{jugador.moverEnX(-1)}
-	keyboard.right().onPressDo	{jugador.moverEnX(1)}
+	keyboard.up().onPressDo { jugador.mover(direccion.arriba()) }
+	keyboard.down().onPressDo { jugador.mover(direccion.abajo()) }
+	keyboard.left().onPressDo { jugador.mover(direccion.izquierda()) }
+	keyboard.right().onPressDo { jugador.mover(direccion.derecha()) }
+
+
 	keyboard.z().onPressDo {jugador.atacar()}
 	keyboard.x().onPressDo {jugador.defender()}
+	keyboard.c().onPressDo {jugador.interactuar()}
 
 	keyboard.p().onPressDo	{boss.serGolpeado()} //de prueba
 	

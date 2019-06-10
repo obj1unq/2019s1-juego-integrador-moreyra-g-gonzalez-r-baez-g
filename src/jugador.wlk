@@ -4,10 +4,8 @@ import cosas.*
 import ataques.*
 
 object jugador {
-
-	var property posicionXJugador = 1
-	var property posicionYJugador = 1
-	var property direccionPersonaje = 1
+	var property position = game.at(1,1)
+	var property direccionPersonaje = direccion.abajo()
 	var property direction = arriba
 	var property tieneLlave = false
 	var property estadoPj = self.normal()
@@ -15,84 +13,32 @@ object jugador {
 	
 	method id() = 4
 	method image() = "Jugador_posicion_" + direccionPersonaje + estadoPj + ".png"
-	method position() = game.at(posicionXJugador,posicionYJugador)
 	method agarrarLlave(){
 		tieneLlave = true
 	}
 
-	method moverEnX(direccion){
-		self.cambiarImagenHorizontal(direccion)
-		if (direccion == 1 && self.noHayObjetoDerecha()){
-			posicionXJugador += direccion
-		} else if (direccion == -1 && self.noHayObjetoIzquierda()){
-			posicionXJugador += direccion
+	method mover(direccion){
+		direccionPersonaje = direccion
+		if (self.noHayObstaculoAdelante()){
+			self.position(self.adelante())
 		}
 	}
-	method moverEnY(direccion) {
-		self.cambiarImagenVertical(direccion)
-		if (direccion == 1 && self.noHayObjetoArriba()){
-			
-			posicionYJugador += direccion
-		} else if (direccion == -1 && self.noHayObjetoAbajo()){
 	
-			posicionYJugador += direccion
-		} 
-	}
-	
-	
-	method moverEnXConCaja(direccion,caja){
-		self.moverEnX(direccion)
+	method moverConCaja(direccion,caja){
+		self.mover(direccion)
 		caja.moverseConJugador()
 	}
 	
-	method moverEnYConCaja(direccion,caja){
-		self.moverEnX(direccion)
-		caja.moverseConJugador()
-	}
 	
-	method cambiarImagenHorizontal(direccion){
-		if (direccion == 1){
-			self.direccionPersonaje(self.derecha())
-		} else {
-			self.direccionPersonaje(self.izquierda())
-		}
+	method noHayObstaculoAdelante(){
+		return  (self.listaDeObjetosAdelante().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosAdelante()))
 	}
-	method cambiarImagenVertical(direccion) {
-		if (direccion == 1){
-			self.direccionPersonaje(self.arriba())
-		} else {
-			self.direccionPersonaje(self.abajo())
-		} 
-	}
-	
-	
-	
-	
-	method derecha() = 4
-	method izquierda() = 2
-	method arriba() = 3
-	method abajo() = 1
-	
-	method noHayObjetoArriba(){
-		return  (self.listaDeObjetosArriba().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosArriba()))
-	}
-	method noHayObjetoAbajo(){
-		return  (self.listaDeObjetosAbajo().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosAbajo()))
-	}
-	method noHayObjetoDerecha(){
-		return  (self.listaDeObjetosDerecha().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosDerecha()))
-	}
-	method noHayObjetoIzquierda(){
-		return  (self.listaDeObjetosIzquierda().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosIzquierda()))
-	}
+
 	method objetosSonTraspasables(listaDeObjetos){
 		return listaDeObjetos.all{objeto => objeto.esTraspasable()}
 	}
-	method listaDeObjetosArriba() = game.getObjectsIn(game.at(self.posicionXJugador(),self.posicionYJugador()+1))
-	method listaDeObjetosAbajo() = game.getObjectsIn(game.at(self.posicionXJugador(),self.posicionYJugador()-1))
-	method listaDeObjetosDerecha() = game.getObjectsIn(game.at(self.posicionXJugador()+1,self.posicionYJugador()))
-	method listaDeObjetosIzquierda() = game.getObjectsIn(game.at(self.posicionXJugador()-1,self.posicionYJugador()))
-	
+
+	method listaDeObjetosAdelante() = game.getObjectsIn(self.adelante())
 	
 	method atacar(){
 		if (tiempoDeAtaque == 0){ 
@@ -103,8 +49,7 @@ object jugador {
 		}
 	}
 	
-	method listaDeObjetosAdelante() = game.getObjectsIn(self.adelante())
-	
+
 	method atacarPrima(){
 
 		var posicionInicial = self.position()
@@ -139,14 +84,19 @@ object jugador {
 		})
 	}
 	
+	method interactuar(){
+		self.listaDeObjetosAdelante().forEach({ objeto => objeto.tenerInteraccion()})
+	}
+
+	
 //	method adelante() = direction.siguiente(self.position())
 	
 	method adelante() {
-		if (direccionPersonaje == self.arriba() ){
+		if (direccionPersonaje == direccion.arriba() ){
 			return self.position().up(1)
-		} else if(direccionPersonaje == self.izquierda()) {
+		} else if(direccionPersonaje == direccion.izquierda()) {
 			return self.position().left(1)
-		} else if(direccionPersonaje == self.abajo()) {
+		} else if(direccionPersonaje == direccion.abajo()) {
 			return self.position().down(1)
 		} else {
 			return self.position().right(1)
@@ -166,6 +116,7 @@ object pepita{
 	method id() = 3
 	
 	method serGolpeado(){ game.say(self, "ay") }	
+	method tenerInteraccion(){ game.say(self, "que querei?")}	
 }
 
 object boss{
@@ -216,7 +167,7 @@ object boss{
 		return [1,2,3,4,5,6,8,9,10,11,12,13].map{numero=> new Ataque(position = game.at(n,numero),tiempo =500,numeroDeAtaque =n*200+numero)}	
 	}
 
-	
+	method tenerInteraccion(){/* No hace nada */}	
 
 }
 

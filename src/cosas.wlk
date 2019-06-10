@@ -16,6 +16,7 @@ class Pared {
 		return game.getObjectsIn(posicion).any({ objeto => objeto.id() == id.puerta() })
 	}
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 }
 class ParedBoss {
 	const property position
@@ -24,14 +25,14 @@ class ParedBoss {
 
 	method esTraspasable() = false
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 }
 
 class Puerta {
 	const property position
 	const property salaActual
 	const property salaSiguiente
-	const property transportarJugadorCoordenadaX
-	const property transportarJugadorCoordenadaY
+	const property transportarJugadorCoordenadas
 	const direccion
 	
 	method id() = 2
@@ -50,13 +51,13 @@ class Puerta {
 	
 	method moverJugador(){
 		game.removeVisual(jugador)
-		jugador.posicionXJugador(transportarJugadorCoordenadaX)	
-		jugador.posicionYJugador(transportarJugadorCoordenadaY)	
+		jugador.position(transportarJugadorCoordenadas)
 		game.addVisual(jugador)
 		agregarColisiones.jugador()
 	}
 	
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 	
 	
 }
@@ -78,7 +79,8 @@ class Boton{
 		estaActivado = true	
 		
 	}
-	method serGolpeado(){/* No hace nada */}			 
+	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}			 
 }
 
 object nota{
@@ -92,6 +94,7 @@ object nota{
 		game.say(jugador,"Combinacion de botones a pisar")
 	}
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 }
 
 
@@ -104,9 +107,10 @@ object llave{
 	method chocar(){
 		
 		jugador.agarrarLlave()
-		game.removeVisual(self)
+		sala_1.removerObjeto(self)
 	}
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 }
 
 class Caja{
@@ -136,6 +140,7 @@ class Caja{
 	}
 	
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 	
 			 		
 }
@@ -145,19 +150,19 @@ object caja1 inherits Caja (position = game. at (10,7)) {  }
 
 
 object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2,
-									 transportarJugadorCoordenadaX = 7, transportarJugadorCoordenadaY = 1, direccion = 3
+									 transportarJugadorCoordenadas = game.at(7, 1), direccion = 3
 									){    }
 
 object puerta_2_1 inherits Puerta	(position = game.at(1, 14), salaActual = sala_2, salaSiguiente = sala_3,
-									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1, direccion = 3
+									 transportarJugadorCoordenadas = game.at(1, 1), direccion = 3
 									){    }
 									
 object puerta_2_2 inherits Puerta	(position = game.at(7, 0), salaActual = sala_2, salaSiguiente = sala_1,
-									 transportarJugadorCoordenadaX = 7, transportarJugadorCoordenadaY = 13, direccion = 1
+									 transportarJugadorCoordenadas = game.at(7, 13), direccion = 1
 									){    }
 									
 object puerta_3_1 inherits Puerta	(position = game.at(1,0), salaActual = sala_3, salaSiguiente = sala_3,
-									 transportarJugadorCoordenadaX = 1, transportarJugadorCoordenadaY = 1, direccion = 1
+									 transportarJugadorCoordenadas = game.at(1, 1), direccion = 1
 									){
 									override method esTraspasable() = false									
 									}		
@@ -179,4 +184,5 @@ object espada {
 	}
 	
 	method serGolpeado(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}	
 }							

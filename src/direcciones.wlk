@@ -21,3 +21,10 @@ object arriba inherits Direction {
 	override method siguiente(position) = position.up(1) 
 	method opuesto() = abajo
 }
+
+object direccion{
+	method abajo() = 1
+	method izquierda() = 2
+	method arriba() = 3
+	method derecha() = 4
+}

@@ -15,6 +15,10 @@ class Mapa {
 		// o un objetosEnMapa.foreach({ objeto => objeto.crearColisiones() })
 	}
 	
+	method removerObjeto(objeto){
+		game.removeVisual(objeto)
+		objetosEnMapa.remove(objeto)
+	}	
 	
 }
 
@@ -103,7 +107,7 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + [puerta_1_1]
 											 + [boton1]
 											 + [caja1] 
-											 + [pepita]
+											 
 											 //aca estaba lla llave, al sacarselo cuando lo agarras tiraba un error el comando limpiar mapa
 											 + [nota])  {	 }
 
