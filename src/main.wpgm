@@ -38,9 +38,10 @@ program laLeyendaDePepita {
 	keyboard.down().onPressDo 	{jugador.moverEnY(-1)}
 	keyboard.left().onPressDo 	{jugador.moverEnX(-1)}
 	keyboard.right().onPressDo	{jugador.moverEnX(1)}
-	keyboard.p().onPressDo	{boss.serGolpeado()}
-	
-	
+	keyboard.z().onPressDo {jugador.atacar()}
+	keyboard.x().onPressDo {jugador.defender()}
+
+	keyboard.p().onPressDo	{boss.serGolpeado()} //de prueba
 	
 //	START
 	game.start()

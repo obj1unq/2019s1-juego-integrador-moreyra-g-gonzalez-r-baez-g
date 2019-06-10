@@ -94,19 +94,8 @@ object direccion{
 }
 object muroBoss{
 		 method todo(){
-		 	return	[new ParedBoss(position = game.at(17,1)), 
-					new ParedBoss(position = game.at(17,2)),
-					new ParedBoss(position = game.at(17,3)),
-					new ParedBoss(position = game.at(17,4)),
-					new ParedBoss(position = game.at(17,5)),
-					new ParedBoss(position = game.at(17,6)),
-					new ParedBoss(position = game.at(17,7)),
-					new ParedBoss(position = game.at(17,8)),
-					new ParedBoss(position = game.at(17,9)),
-					new ParedBoss(position = game.at(17,10)),
-					new ParedBoss(position = game.at(17,11)),
-					new ParedBoss(position = game.at(17,12)),
-					new ParedBoss(position = game.at(17,13))]}
+			return (1 .. 13).map({ numero => new ParedBoss(position = game.at(17, numero)) })
+					}
 }
 
 object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ] 
@@ -114,6 +103,7 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + [puerta_1_1]
 											 + [boton1]
 											 + [caja1] 
+											 + [pepita]
 											 //aca estaba lla llave, al sacarselo cuando lo agarras tiraba un error el comando limpiar mapa
 											 + [nota])  {	 }
 
