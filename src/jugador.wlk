@@ -101,19 +101,51 @@ object pepita{
 }
 
 object boss{
+	var tiempoDeAtaque
+	var property vida = 3
 	method position() = game.at(17,3)
 	method image() = "boss.png"
 	method id() = 27
 	method esTraspasable()= true
 	
 	method atacar(sala){
-		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
-	
+		self.atacarP(sala)
+		game.onTick(tiempoDeAtaque,"asdasdasd",{self.atacarP(sala) /*game.removeTickEvent("asdasdasd")*/})	
 	}
 	
+	method atacarP(sala){
+		self.rondaDeAtaque1(sala)
+		self.rondaDeAtaque2(sala)
+	}
+	method serGolpeado(){
+		if(vida>0){
+			vida-=1
+		}
+	}
+	method rondaDeAtaque1(sala){
+		if(self.vida()==3){
+		tiempoDeAtaque = 20000
+		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(1000*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
+		[2,4,6,8,10,12,14,16].forEach{numero=> game.onTick(1000*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFilaEscape(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
+		
+		}
+
+	}
+	method rondaDeAtaque2(sala){
+		if(self.vida()==2){
+		tiempoDeAtaque = 1000	
+		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
+		[2,4,6,8,10,12,14,16].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFilaEscape(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
+		
+		}
+//		game.onTick(15000,"asdasdasd",{self.atacar(sala) game.removeTickEvent("asdasdasd")})	
+	}
 	
 	method ataqueFila(n){
 				return	[1,2,3,4,5,6,7,8,9,10,11,12,13].map{numero=> new Ataque(position = game.at(n,numero),tiempo =500,numeroDeAtaque =n*100+numero)}								  								  								  										  							  								  									  									  									  		
+	}
+	method ataqueFilaEscape(n){
+		return [1,2,3,4,5,6,8,9,10,11,12,13].map{numero=> new Ataque(position = game.at(n,numero),tiempo =500,numeroDeAtaque =n*200+numero)}	
 	}
 }
 
