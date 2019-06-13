@@ -108,11 +108,14 @@ object muroBoss{
 object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ] 
 											 + muroCompleto.todo()
 											 + [puerta_1_1]
+											 + [spawn]
 											 + [boton1]
-											 + [caja1] 
-											 
-											 //aca estaba lla llave, al sacarselo cuando lo agarras tiraba un error el comando limpiar mapa
-											 + [nota])  {	 }
+											 + [boton2]
+											 + [boton3]
+											 + [estatua1,estatua2]
+											 + [alfombra]/*Cambiar asset, muy afeminado me quedó */
+											 + [columna1,columna2,columna3,columna4]
+											 )  {	 }
 
 object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
 											 + muroCompleto.todo()
