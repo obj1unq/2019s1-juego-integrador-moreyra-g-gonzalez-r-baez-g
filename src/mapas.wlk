@@ -113,7 +113,7 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + [boton2]
 											 + [boton3]
 											 + [estatua1,estatua2]
-											 + [alfombra]
+											 + [alfombra]/*Cambiar asset, muy afeminado me quedó */
 											 + [columna1,columna2,columna3,columna4]
 											 )  {	 }
 
