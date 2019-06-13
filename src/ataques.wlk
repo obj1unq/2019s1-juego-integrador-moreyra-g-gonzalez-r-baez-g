@@ -12,11 +12,15 @@ class RondaDeAtaques {
 }
  class Ataque{
  	var property position
- 	var property image = "1.png"
+ 	var property image = "alerta.png"
  	var property tiempo
  	var property numeroDeAtaque
  	method esTraspasable()=true
- 	method chocar(){}
+ 	method chocar(){
+ 		if(image=="ataque.png"){
+ 			jugador.muerto()
+ 		}
+ 	}
  	method lanzarAtaque(sala){
  		if(sala == sala_3){
  			game.addVisual(self)
@@ -28,7 +32,7 @@ class RondaDeAtaques {
  		}
  	}
  	method cambiarAFuego(){
-		 self.image("2.png")
+		 self.image("ataque.png")
 		 game.onTick(tiempo/2,"cambiar incendio"+numeroDeAtaque,{
 		 	game.removeVisual(self)
 		 	game.removeTickEvent("cambiar incendio" +numeroDeAtaque)

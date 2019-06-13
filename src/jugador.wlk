@@ -9,8 +9,12 @@ object jugador {
 	var property direction = arriba
 	var property tieneLlave = false
 	var property estadoPj = self.normal()
-	var tiempoDeAtaque = 0	
-	
+	var tiempoDeAtaque = 0
+	var property estaVivo = true
+		
+	method muerto(){
+		self.estaVivo(false)
+	}
 	method id() = 4
 	method image() = "Jugador_posicion_" + direccionPersonaje + estadoPj + ".png"
 	method agarrarLlave(){
@@ -18,9 +22,11 @@ object jugador {
 	}
 
 	method mover(direccion){
-		direccionPersonaje = direccion
-		if (self.noHayObstaculoAdelante()){
-			self.position(self.adelante())
+		if(estaVivo){
+			direccionPersonaje = direccion
+			if (self.noHayObstaculoAdelante()){
+				self.position(self.adelante())
+			}
 		}
 	}
 	
@@ -41,7 +47,7 @@ object jugador {
 	method listaDeObjetosAdelante() = game.getObjectsIn(self.adelante())
 	
 	method atacar(){
-		if (tiempoDeAtaque == 0){ 
+		if (estaVivo && tiempoDeAtaque == 0){ 
 			self.listaDeObjetosAdelante().forEach({ objeto => objeto.serGolpeado()})
 			self.atacarPrima()
 
@@ -78,10 +84,12 @@ object jugador {
 		
 	}
 	method defender(){
-		self.estadoPj(self.defensa())
-		game.onTick(300, "defensa", {self.estadoPj(self.normal())
+		if(estaVivo){
+			self.estadoPj(self.defensa())
+			game.onTick(300, "defensa", {self.estadoPj(self.normal())
 									 game.removeTickEvent("defensa")
-		})
+			})
+		}
 	}
 	
 	method interactuar(){
@@ -124,9 +132,9 @@ object boss{
 	var property vida = 3
 	var property sePuedeAtacar = false
 	method position() = game.at(17,3)
-	method image() = "boss.png"
+	method image() = if(sePuedeAtacar){"bossIndefenso.png"}else{"bossDefensivo.png"}
 	method id() = 27
-	method esTraspasable()= true
+	method esTraspasable()= not self.estaVivo()
 	method estaVivo(){
 		return vida>0
 	}

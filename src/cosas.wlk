@@ -181,4 +181,10 @@ object espada {
 	
 	method serGolpeado(){/* No hace nada */}	
 	method tenerInteraccion(){/* No hace nada */}	
+}
+
+object jaula{
+	var property position=game.at(18,13)
+	method image()="jaula.png"
+	method serGolpeado(){/* No hace nada */}
 }							

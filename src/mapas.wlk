@@ -101,7 +101,7 @@ object direccion{
 }
 object muroBoss{
 		 method todo(){
-			return (1 .. 13).map({ numero => new ParedBoss(position = game.at(17, numero)) })
+			return [1,2,4,5,6,7,8,9,10,11,12,13].map({ numero => new ParedBoss(position = game.at(17, numero)) })
 					}
 }
 
@@ -122,7 +122,7 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo() + muroBoss.todo()+ [puerta_3_1] + [boss] + [pepita] )   {
+											 + muroCompleto.todo() + muroBoss.todo()+ [puerta_3_1] + [boss] + [pepita] + [jaula])   {
 											 	override method activarBoss(){
 											 		boss.atacar(self)
 											 	}
