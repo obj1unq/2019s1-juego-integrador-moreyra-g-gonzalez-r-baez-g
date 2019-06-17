@@ -272,11 +272,11 @@ object boton3 inherits Boton (position = game.at(1, 1)) {
 
 }
 
-class Columna{
+class ColumnaBot{
 		
 	var property position 
 	
-	method image() = "col.png"
+	method image() = "colBot.png"
 	
 	method esTraspasable() = false
 	
@@ -288,16 +288,34 @@ class Columna{
 	
 }
 
-object columna1 inherits Columna(position = game.at(10,10)){  }
-object columna2 inherits Columna(position = game.at(10,3)){  }
-object columna3 inherits Columna(position = game.at(5,10)){  }
-object columna4 inherits Columna(position = game.at(5,3)){  }
+class ColumnaTop{
+	var property position 
+	
+	method image() = "colTop.png"
+	
+	method esTraspasable() = true
+	
+	method chocar(){  }
+	
+	method serGolpeado() { /* No hace nada */}
 
-object estatua1 inherits Estatua(position = game.at (8,13)){
+	method tenerInteraccion() { /* No hace nada */}
+}
+
+object columna1 inherits ColumnaBot(position = game.at(14,10)){  }
+object columna1Top inherits ColumnaTop(position = game.at(14,11)){  }
+object columna2 inherits ColumnaBot(position = game.at(14,3)){  }
+object columna2Top inherits ColumnaTop(position = game.at(14,4)){  }
+object columna3 inherits ColumnaBot(position = game.at(5,10)){  }
+object columna3Top inherits ColumnaTop(position = game.at(5,11)){  }
+object columna4 inherits ColumnaBot(position = game.at(5,3)){  }
+object columna4Top inherits ColumnaTop(position = game.at(5,4)){  }
+
+object estatua1 inherits Estatua(position = game.at (9,13)){
 	override method image() = "sprite_fujin.png"
 }
 
-object estatua2 inherits Estatua(position = game.at (6,13)){
+object estatua2 inherits Estatua(position = game.at (5,13)){
 	override method image() = "sprite_fujin.png"
 }
 
@@ -332,9 +350,9 @@ object puerta_3_1 inherits Puerta	(position = game.at(1, 0), salaActual = sala_3
 }
 
 object alfombra{
-	const property position = game.center()
+	const property position = game.at(7,7)
 	
-	method image() = "pink_rug.png"
+	method image() = "rug.png"
 	
 	method esTraspasable() = true
 	
@@ -347,7 +365,7 @@ object alfombra{
 }
 
 object spawn {
-	const property position = game.at(6,1)
+	const property position = game.at(8,1)
 	
 	method image() = "spawn.png"
 	
