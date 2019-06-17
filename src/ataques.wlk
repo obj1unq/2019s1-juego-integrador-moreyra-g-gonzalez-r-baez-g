@@ -38,4 +38,5 @@ class RondaDeAtaques {
 		 	game.removeTickEvent("cambiar incendio" +numeroDeAtaque)
 		 })
 	}
+	method serGolpeado(){}	
  }

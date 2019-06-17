@@ -36,6 +36,11 @@ object mapa_2{
 	method image() = "MakingMap1.png"
 	method id() = 5
 }
+object mapa_3{
+	method position() = game.at(0, 0)
+	method image() = "mapa3.png"
+	method id() = 5
+}
 
 object muroCompleto{
 	
@@ -101,8 +106,21 @@ object direccion{
 }
 object muroBoss{
 		 method todo(){
+		 	return self.defensaBoss()+self.parteIzquierdaMapa()+self.parteDerechaMapa()+self.parteArribaMapa()
+		 	}
+		 method defensaBoss(){
 			return [1,2,4,5,6,7,8,9,10,11,12,13].map({ numero => new ParedBoss(position = game.at(17, numero)) })
 					}
+		method parteIzquierdaMapa(){
+			return (1 .. 14).map({numero => new BushBoss(position = game.at(0, numero),perspectiva = 2)})
+		}
+		method parteDerechaMapa(){
+			return (1 .. 14).map({numero => new BushBoss(position = game.at(19, numero),perspectiva = 2)})
+		}
+		method parteArribaMapa(){
+			return (0 .. 19).map({numero => new BushBoss(position = game.at(numero,14),perspectiva = 1)})
+		}
+		
 }
 
 object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ] 
@@ -124,8 +142,10 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 
 
 
-object sala_3 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo() + muroBoss.todo()+ [puerta_3_1] + [boss] + [pepita] + [jaula])   {
+object sala_3 inherits Mapa (objetosEnMapa =   [mapa_3 ] 
+											 + muroCompleto.todo() + lagunita.aguaEnFila(15)+lagunita.aguaEnFila(16)+ muroBoss.todo()+[puerta_3_1] + [boss] + [pepita] + [jaula]
+											 + [mascaraPiso]+
+											 [puenteParte1,puenteParte2, puenteParte3,puenteParte4,puenteParte5,puenteParte6,puenteParte7,puenteParte8])   {
 											 	override method activarBoss(){
 											 		boss.atacar(self)
 											 	}

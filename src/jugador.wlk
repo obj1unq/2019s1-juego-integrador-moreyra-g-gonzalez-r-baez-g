@@ -132,7 +132,13 @@ object boss{
 	var property vida = 3
 	var property sePuedeAtacar = false
 	method position() = game.at(17,3)
-	method image() = if(sePuedeAtacar){"bossIndefenso.png"}else{"bossDefensivo.png"}
+	method image() = if(not self.estaVivo()){
+							"bossMuerto.png"
+						}else if(sePuedeAtacar){
+							"bossIndefenso.png"
+						}else{
+							"bossDefensivo.png"
+						}
 	method id() = 27
 	method esTraspasable()= not self.estaVivo()
 	method estaVivo(){
@@ -180,7 +186,8 @@ object boss{
 		return [1,2,3,4,5,6,8,9,10,11,12,13].map{numero=> new Ataque(position = game.at(n,numero),tiempo =500,numeroDeAtaque =n*200+numero)}	
 	}
 
-	method tenerInteraccion(){/* No hace nada */}	
+	method tenerInteraccion(){/* No hace nada */}
+	method chocar()={/* No hace nada */}	
 
 }
 

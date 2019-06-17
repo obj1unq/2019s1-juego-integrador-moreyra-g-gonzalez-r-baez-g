@@ -46,6 +46,24 @@ class ParedBoss {
 
 }
 
+class BushBoss{
+	const property position
+	var perspectiva
+
+	method image() = "bush"+perspectiva+".png"
+
+	method id() = 1
+
+	method esTraspasable() = false
+
+	method serGolpeado() { /* No hace nada */
+	}
+
+	method tenerInteraccion() { /* No hace nada */
+	}
+	
+}
+
 class Puerta {
 
 	const property position
@@ -149,11 +167,9 @@ object llave {
 		sala_1.removerObjeto(self)
 	}
 
-	method serGolpeado() { /* No hace nada */
-	}
+	method serGolpeado() { /* No hace nada */}
 
-	method tenerInteraccion() { /* No hace nada */
-	}
+	method tenerInteraccion() { /* No hace nada */}
 
 }
 
@@ -370,10 +386,91 @@ object espada {
 object jaula{
 	var property position=game.at(18,13)
 	method image()="jaula.png"
-	method serGolpeado(){/* No hace nada */}
+	method serGolpeado(){game.removeVisual(self)}
+}
+object mascaraPiso{
+	const property position = game.at(7,7)
+	method image()="mascara.png"
+	method esTraspasable()= false
+	method serGolpeado() { /* No hace nada */}
 }							
 
-
-
-
+object puenteParte1{
+	var position = game.at(15,4)
+	method image()="puente1_1.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte2{
+	var position = game.at(15,3)
+	method image()="puente1_2.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte3{
+	var position = game.at(15,2)
+	method image()="puente1_3.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte4{
+	var position = game.at(15,1)
+	method image()="puente1_4.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte5{
+	var position = game.at(16,4)
+	method image()="puente1_5.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte6{
+	var position = game.at(16,3)
+	method image()="puente1_6.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte7{
+	var position = game.at(16,2)
+	method image()="puente1_7.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object puenteParte8{
+	var position = game.at(16,1)
+	method image()="puente1_8.png"
+	method position()=position
+	method esTraspasable()= true
+	method serGolpeado() { /* No hace nada */}
+	method chocar(){}
+}
+object lagunita{
+	method aguaEnFila(n){
+				return	[1,2,3,4,5,6,7,8,9,10,11,12,13].map{numero=>new Agua(position=game.at(n,numero))}								  								  								  										  							  								  									  									  									  		
+	}
+	
+}
+class Agua{
+	var property position
+	method image()="agua.png"
+	method esTraspasable()=  self.objetosEnAgua().size()==2
+	method objetosEnAgua() = game.getObjectsIn(position)
+	method serGolpeado() { /* No hace nada */}
+	method chocar()={/* No hace nada */}
+}
 
