@@ -207,6 +207,31 @@ class Caja {
 
 }
 
+class Spike {
+	var property position
+	
+	method image()= "spikes.png"
+	
+	method esTraspasable() = true
+	
+	method serGolpeado(){  }
+	
+	method tenerInteraccion() {  }
+	
+	method chocar(){ /*tengo que agregar que le saque vida al personaje */}
+	
+}
+
+
+object spikes{
+	method spikesFila(n){
+				return	[1,2,3,4,5,6,7,8,9,10,11,12,13].map{numero=>new Spike(position=game.at(n,numero))}								  								  								  										  							  								  									  									  									  		
+	}
+	
+}
+
+
+
 
 
 class Estatua{
