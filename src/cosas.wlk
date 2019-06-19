@@ -276,10 +276,14 @@ object boton3 inherits Boton (position = game.at(1, 1)) {
 		if (not estaActivado and boton1.estaActivado()) {
 			game.addVisual(llave)
 			estaActivado = true
-		} else {
-			boton1.estaActivado(false)
-			boton2.estaActivado(false)
+		} else if (estaActivado and boton1.estaActivado())  {
+		
 		}
+		
+		  else {
+		  	boton1.estaActivado(false)
+			boton2.estaActivado(false)
+		  }
 	}
 
 }
