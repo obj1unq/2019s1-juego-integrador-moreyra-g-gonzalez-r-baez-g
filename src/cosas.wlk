@@ -180,7 +180,11 @@ class Caja {
 
 	method esTraspasable() = false
 
+
 	method chocar() {/* No hace nada */}
+
+
+	
 
 	method serGolpeado() {
 		sala_1.removerObjeto(self)
