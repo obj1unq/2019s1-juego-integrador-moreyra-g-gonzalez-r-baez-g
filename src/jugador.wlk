@@ -6,7 +6,7 @@ import ataques.*
 object jugador {
 	var property position = game.at(6,1)
 	var property direccionPersonaje = direccion.abajo()
-	var property direction = arriba
+	var property direction = arriba/*Esto hay que sacarlo */
 	var property tieneLlave = true
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0

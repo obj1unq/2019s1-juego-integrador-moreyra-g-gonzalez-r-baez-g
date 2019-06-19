@@ -184,7 +184,7 @@ class Caja {
 	method chocar() {
 	}
 
-	method moverseConJugador() {
+	/*method moverseConJugador() {
 		self.validarPosicion(jugador.direction())
 		position = jugador.direction().siguiente(position)
 	}
@@ -196,7 +196,7 @@ class Caja {
 			game.say(self, "No se puede mover")
 		} else {
 		}
-	}
+	}*/
 
 	method serGolpeado() {
 		sala_1.removerObjeto(self)
