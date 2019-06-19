@@ -6,8 +6,7 @@ import ataques.*
 object jugador {
 	var property position = game.at(6,1)
 	var property direccionPersonaje = direccion.abajo()
-	var property direction = arriba
-	var property tieneLlave = true
+	var property tieneLlave = false
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
 	var property estaVivo = true
@@ -29,13 +28,6 @@ object jugador {
 			}
 		}
 	}
-	
-	method moverConCaja(direccion,caja){
-		self.mover(direccion)
-		caja.moverseConJugador()
-	}
-	
-	
 	method noHayObstaculoAdelante(){
 		return  (self.listaDeObjetosAdelante().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosAdelante()))
 	}

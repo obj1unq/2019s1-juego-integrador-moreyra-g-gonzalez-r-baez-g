@@ -98,9 +98,7 @@ class Puerta {
     }
     
 	method moverJugador() {
-		game.removeVisual(jugador)
 		jugador.position(transportarJugadorCoordenadas)
-		game.addVisual(jugador)
 		agregarColisiones.jugador()
 	}
 
@@ -164,8 +162,9 @@ object llave {
 
 	method chocar() {
 		jugador.agarrarLlave()
-		sala_1.removerObjeto(self)
+		sala_1.removerObjeto(self)			
 	}
+
 
 	method serGolpeado() { /* No hace nada */}
 
@@ -181,29 +180,13 @@ class Caja {
 
 	method esTraspasable() = false
 
-	method chocar() {
-	}
-
-	method moverseConJugador() {
-		self.validarPosicion(jugador.direction())
-		position = jugador.direction().siguiente(position)
-	}
-
-	method validarPosicion(direccion) {
-		const posicionSig = direccion.siguiente()
-		var esLugarLibre = game.getObjectsIn(posicionSig)
-		if (not esLugarLibre.all({ objeto => objeto.esTraspasable()})) {
-			game.say(self, "No se puede mover")
-		} else {
-		}
-	}
+	method chocar() {/* No hace nada */}
 
 	method serGolpeado() {
 		sala_1.removerObjeto(self)
 	}
 
-	method tenerInteraccion() { /* No hace nada */
-	}
+	method tenerInteraccion() { /* No hace nada */}
 
 }
 
@@ -286,7 +269,7 @@ object boton3 inherits Boton (position = game.at(1, 1)) {
 	}
 
 	override method chocar() {
-		if (boton1.estaActivado()) {
+		if (not estaActivado and boton1.estaActivado()) {
 			game.addVisual(llave)
 			estaActivado = true
 		} else {
@@ -424,6 +407,8 @@ object espada {
 	
 	method serGolpeado(){/* No hace nada */}	
 	method tenerInteraccion(){/* No hace nada */}	
+	method chocar(){ /* No hace nada */}
+	method id()=3000000
 }
 
 object jaula{

@@ -133,8 +133,9 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + [estatua1,estatua2]
 											 + [alfombra]/*Cambiar asset, muy afeminado me quedó */
 											 + [columna1,columna2,columna3,columna4]
-											 + [columna1Top,columna2Top,columna3Top,columna4Top]
 											 + [nota,caja1,caja2,caja3]
+											 + [jugador]
+											 + [columna1Top,columna2Top,columna3Top,columna4Top]
 											
 											 )  {	 }
 
@@ -142,14 +143,16 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 											 + muroCompleto.todo()
 											 + [puerta_2_1] 
 											 + [puerta_2_2]
-											 + spikes.spikesFila(5))   {	}
+											 + spikes.spikesFila(5)
+											 + [jugador])   {	}
 
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_3 ] 
 											 + muroCompleto.todo() + lagunita.aguaEnFila(15)+lagunita.aguaEnFila(16)+ muroBoss.todo()+[puerta_3_1] + [boss] + [pepita] + [jaula]
 											 + [mascaraPiso]+
-											 [puenteParte1,puenteParte2,puenteParte2_2, puenteParte3])   {
+											 [puenteParte1,puenteParte2,puenteParte2_2, puenteParte3]
+											 + [jugador])   {
 											 	override method activarBoss(){
 											 		boss.atacar(self)
 											 	}

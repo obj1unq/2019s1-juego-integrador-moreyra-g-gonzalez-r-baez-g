@@ -17,7 +17,6 @@ program laLeyendaDePepita {
 
 //	VISUALES
 	sala_1.cargarMapa()
-	game.addVisual(jugador)
 	
 	
 	
