@@ -7,7 +7,7 @@ object jugador {
 	var property position = game.at(6,1)
 	var property direccionPersonaje = direccion.abajo()
 	var property direction = arriba
-	var property tieneLlave = false
+	var property tieneLlave = true
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
 	var property estaVivo = true

@@ -199,7 +199,7 @@ class Caja {
 	}
 
 	method serGolpeado() {
-		game.removeVisual(self)
+		sala_1.removerObjeto(self)
 	}
 
 	method tenerInteraccion() { /* No hace nada */
@@ -218,7 +218,7 @@ class Spike {
 	
 	method tenerInteraccion() {  }
 	
-	method chocar(){ /*tengo que agregar que le saque vida al personaje */}
+	method chocar(){ /*jugador.muerto()*/}
 	
 }
 
@@ -439,68 +439,35 @@ object mascaraPiso{
 }							
 
 object puenteParte1{
-	var position = game.at(15,4)
-	method image()="puente1_1.png"
-	method position()=position
-	method esTraspasable()= true
+	var property position = game.at(15,4)
+	method image()="P1.png"
+	method esTraspasable()=  false
 	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
+	method chocar()={/* No hace nada */}
 }
+
 object puenteParte2{
-	var position = game.at(15,3)
-	method image()="puente1_2.png"
-	method position()=position
-	method esTraspasable()= true
+	var property position = game.at(15,3)
+	method image()="P2.png"
+	method esTraspasable()=  true
 	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
+	method chocar()={/* No hace nada */}
 }
+
+object puenteParte2_2{
+	var property position = game.at(16,3)
+	method image()="P2.png"
+	method esTraspasable()=  true
+	method serGolpeado() { /* No hace nada */}
+	method chocar()={/* No hace nada */}
+}
+
 object puenteParte3{
-	var position = game.at(15,2)
-	method image()="puente1_3.png"
-	method position()=position
-	method esTraspasable()= true
+	var property position = game.at(15,2)
+	method image()="P3.png"
+	method esTraspasable()=  false
 	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
-}
-object puenteParte4{
-	var position = game.at(15,1)
-	method image()="puente1_4.png"
-	method position()=position
-	method esTraspasable()= true
-	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
-}
-object puenteParte5{
-	var position = game.at(16,4)
-	method image()="puente1_5.png"
-	method position()=position
-	method esTraspasable()= true
-	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
-}
-object puenteParte6{
-	var position = game.at(16,3)
-	method image()="puente1_6.png"
-	method position()=position
-	method esTraspasable()= true
-	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
-}
-object puenteParte7{
-	var position = game.at(16,2)
-	method image()="puente1_7.png"
-	method position()=position
-	method esTraspasable()= true
-	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
-}
-object puenteParte8{
-	var position = game.at(16,1)
-	method image()="puente1_8.png"
-	method position()=position
-	method esTraspasable()= true
-	method serGolpeado() { /* No hace nada */}
-	method chocar(){}
+	method chocar()={/* No hace nada */}
 }
 object lagunita{
 	method aguaEnFila(n){
