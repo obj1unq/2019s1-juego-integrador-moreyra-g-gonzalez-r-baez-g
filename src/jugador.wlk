@@ -7,7 +7,7 @@ import gameOver.*
 object jugador {
 	var property position = game.at(10,2)
 	var property direccionPersonaje = direccion.abajo()
-	var property tieneLlave = true
+	var property tieneLlave = false
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
 	var property estaVivo = true
