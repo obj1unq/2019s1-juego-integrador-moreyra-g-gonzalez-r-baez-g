@@ -132,7 +132,10 @@ class Boton {
 
 }
 
+
 object nota {
+	
+	var fueLeida = false
 
 	const property position = game.at(18, 1)
 
@@ -141,8 +144,13 @@ object nota {
 	method esTraspasable() = true
 
 	method chocar() {
-		game.say(jugador, "Violeta, Azul, Amarillo")
+		if (not fueLeida){
+			game.say(jugador,"Violeta,Azul,Amarillo ")
+			fueLeida = true
+		}
 	}
+	
+	
 
 	method serGolpeado() { /* No hace nada */
 	}
@@ -381,7 +389,7 @@ object alfombra{
 }
 
 object spawn {
-	const property position = game.at(8,1)
+	const property position = game.at(9.5,1.5)
 	
 	method image() = "spawn.png"
 	

@@ -4,7 +4,7 @@ import cosas.*
 import ataques.*
 
 object jugador {
-	var property position = game.at(6,1)
+	var property position = game.at(10,2)
 	var property direccionPersonaje = direccion.abajo()
 	var property tieneLlave = false
 	var property estadoPj = self.normal()

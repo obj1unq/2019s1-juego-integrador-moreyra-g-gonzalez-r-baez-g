@@ -143,7 +143,7 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 											 + muroCompleto.todo()
 											 + [puerta_2_1] 
 											 + [puerta_2_2]
-											 + spikes.spikesFila(5)
+											 + spikes.spikesFila(5)											
 											 + [jugador])   {	}
 
 
