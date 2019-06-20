@@ -2,17 +2,19 @@ import wollok.game.*
 import direcciones.*
 import cosas.*
 import ataques.*
+import gameOver.*
 
 object jugador {
 	var property position = game.at(10,2)
 	var property direccionPersonaje = direccion.abajo()
-	var property tieneLlave = false
+	var property tieneLlave = true
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
 	var property estaVivo = true
 		
 	method muerto(){
 		self.estaVivo(false)
+		gameOver.finDelJuego()
 	}
 	method id() = 4
 	method image() = "Jugador_posicion_" + direccionPersonaje + estadoPj + ".png"
@@ -139,7 +141,7 @@ object boss{
 	
 	
 	method atacar(sala){
-		if(self.estaVivo()){
+		if(self.estaVivo()&&jugador.estaVivo()){
 		self.atacarP(sala)
 		game.onTick(8500,"se puede atacar vos",{self.sePuedeAtacar(true) game.removeTickEvent("se puede atacar vos")})
 		game.onTick(12000,"recursion",{self.atacar(sala) game.removeTickEvent("recursion")})
@@ -179,7 +181,8 @@ object boss{
 	}
 
 	method tenerInteraccion(){/* No hace nada */}
-	method chocar()={/* No hace nada */}	
+	method chocar()={/* No hace nada */}
+	method regenerar(){vida = 3}	
 
 }
 

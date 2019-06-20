@@ -3,6 +3,8 @@ import jugador.*
 import mapas.*
 import colisiones.*
 import cosas.*
+import gameOver.*
+import teclado.*
 program laLeyendaDePepita {
 
 
@@ -29,17 +31,7 @@ program laLeyendaDePepita {
 
 //	TECLADO
 
-	keyboard.up().onPressDo { jugador.mover(direccion.arriba()) }
-	keyboard.down().onPressDo { jugador.mover(direccion.abajo()) }
-	keyboard.left().onPressDo { jugador.mover(direccion.izquierda()) }
-	keyboard.right().onPressDo { jugador.mover(direccion.derecha()) }
-
-
-	keyboard.z().onPressDo {jugador.atacar()}
-	keyboard.x().onPressDo {jugador.defender()}
-	keyboard.c().onPressDo {jugador.interactuar()}
-
-	keyboard.p().onPressDo	{boss.serGolpeado()} //de prueba
+	teclado.activar()
 	
 //	START
 	game.start()
