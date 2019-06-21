@@ -142,7 +142,6 @@ object boss{
 	
 	
 	method atacar(sala){
-		game.say(self, "MUEREEEE!")
 		if(self.estaVivo()&&jugador.estaVivo()){
 		self.atacarP(sala)
 		game.onTick(8500,"se puede atacar vos",{self.sePuedeAtacar(true) game.removeTickEvent("se puede atacar vos")})
@@ -151,6 +150,7 @@ object boss{
 	}
 	
 	method atacarP(sala){
+		game.say(self, "MUEREEEE!")
 		self.rondaDeAtaque(sala)
 		
 	}
