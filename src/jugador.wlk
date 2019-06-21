@@ -7,7 +7,7 @@ import gameOver.*
 object jugador {
 	var property position = game.at(10,2)
 	var property direccionPersonaje = direccion.abajo()
-	var property tieneLlave = true //false
+	var property tieneLlave = false
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
 	var property estaVivo = true
@@ -124,7 +124,7 @@ object pepita{
 
 object boss{
 	
-	var property vida = 0 //3
+	var property vida = 3
 	var property sePuedeAtacar = false
 	method position() = game.at(17,3)
 	method image() = if(not self.estaVivo()){
