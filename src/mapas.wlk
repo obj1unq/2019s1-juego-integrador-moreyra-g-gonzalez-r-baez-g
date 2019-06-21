@@ -155,6 +155,7 @@ object sala_3 inherits Mapa (objetosEnMapa =   [mapa_3 ]
 											 + [jugador])   {
 											 	override method activarBoss(){
 											 		boss.atacar(self)
+											 		pepita.pedirAyuda()
 											 	}
 											 } // ataque x = 1-16, y = 1,13, boss 3-17
 

@@ -26,3 +26,24 @@ object gameOver {
 	}
 	method chochar(){/*no hace nada*/}
 }
+
+object final{
+	var property image = "cielo.png"
+	method position()= game.at(0,0)
+
+	method ganaste(){
+		
+		game.onTick(2000,"espera",{
+			game.clear()
+			game.addVisual(self)
+			self.cambio() 
+			})
+	}
+	method cambio(){
+		game.onTick(500,"cielo",{image="cielo2.png"game.removeTickEvent("cielo")})
+		game.onTick(1000,"cielo2",{image="cielo.png"game.removeTickEvent("cielo2") self.cambio()})
+	}
+}
+
+
+

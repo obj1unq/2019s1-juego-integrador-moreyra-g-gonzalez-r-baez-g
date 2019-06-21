@@ -7,7 +7,7 @@ import gameOver.*
 object jugador {
 	var property position = game.at(10,2)
 	var property direccionPersonaje = direccion.abajo()
-	var property tieneLlave = false
+	var property tieneLlave = true //false
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
 	var property estaVivo = true
@@ -117,13 +117,14 @@ object pepita{
 	method esTraspasable() = false
 	method id() = 3
 	
-	method serGolpeado(){ game.say(self, "ay") }	
-	method tenerInteraccion(){ game.say(self, "que querei?")}	
+	method serGolpeado(){ game.say(self, "Gracias!") }	
+	method tenerInteraccion(){ game.say(self, "que querei?")}
+	method pedirAyuda(){game.say(self, "AYUDA!")}	
 }
 
 object boss{
 	
-	var property vida = 3
+	var property vida = 0 //3
 	var property sePuedeAtacar = false
 	method position() = game.at(17,3)
 	method image() = if(not self.estaVivo()){
@@ -141,6 +142,7 @@ object boss{
 	
 	
 	method atacar(sala){
+		game.say(self, "MUEREEEE!")
 		if(self.estaVivo()&&jugador.estaVivo()){
 		self.atacarP(sala)
 		game.onTick(8500,"se puede atacar vos",{self.sePuedeAtacar(true) game.removeTickEvent("se puede atacar vos")})

@@ -4,6 +4,7 @@ import mapas.*
 import colisiones.*
 import direcciones.*
 import ataques.*
+import gameOver.*
 
 class Pared {
 
@@ -430,7 +431,7 @@ object espada {
 object jaula{
 	var property position=game.at(18,13)
 	method image()="jaula.png"
-	method serGolpeado(){game.removeVisual(self)}
+	method serGolpeado(){game.removeVisual(self) final.ganaste()}
 }
 object mascaraPiso{
 	const property position = game.at(7,7)
