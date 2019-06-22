@@ -14,4 +14,8 @@ object id {
 	method pared() = 1
 	method pepita() = 3
 	method jugador() = 4
+	method roca() = 5
+	method sueloRoca() = 6
+	method espada() = 3000000
+
 }

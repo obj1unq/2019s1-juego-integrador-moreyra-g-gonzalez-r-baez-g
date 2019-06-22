@@ -6,10 +6,10 @@ import gameOver.*
 object teclado {
 	
 	method activar(){
-	keyboard.up().onPressDo { jugador.mover(direccion.arriba()) }
-	keyboard.down().onPressDo { jugador.mover(direccion.abajo()) }
-	keyboard.left().onPressDo { jugador.mover(direccion.izquierda()) }
-	keyboard.right().onPressDo { jugador.mover(direccion.derecha()) }
+	keyboard.up().onPressDo { jugador.mover(direccionRep.arriba()) }
+	keyboard.down().onPressDo { jugador.mover(direccionRep.abajo()) }
+	keyboard.left().onPressDo { jugador.mover(direccionRep.izquierda()) }
+	keyboard.right().onPressDo { jugador.mover(direccionRep.derecha()) }
 
 
 	keyboard.z().onPressDo {jugador.atacar()}

@@ -356,21 +356,28 @@ object caja3 inherits Caja (position = game.at(16, 1)){
 	
 }
 
-object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2, transportarJugadorCoordenadas = game.at(7, 1), direccion = 3) {
+object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_1, salaSiguiente = sala_2, transportarJugadorCoordenadas = game.at(7, 1), direccion = direccionRep.arriba()) {
 
 }
 
-object puerta_2_1 inherits Puerta	(position = game.at(1, 14), salaActual = sala_2, salaSiguiente = sala_3, transportarJugadorCoordenadas = game.at(1, 1), direccion = 3) {
+object puerta_2_1 inherits Puerta	(position = game.at(1, 14), salaActual = sala_2, salaSiguiente = sala_3, transportarJugadorCoordenadas = game.at(1, 1), direccion = direccionRep.arriba()) {
 
 }
 
-object puerta_2_2 inherits Puerta	(position = game.at(7, 0), salaActual = sala_2, salaSiguiente = sala_1, transportarJugadorCoordenadas = game.at(7, 13), direccion = 1) {
+object puerta_2_2 inherits Puerta	(position = game.at(7, 0), salaActual = sala_2, salaSiguiente = sala_1, transportarJugadorCoordenadas = game.at(7, 13), direccion = direccionRep.abajo()) {
 
 }
 
-object puerta_3_1 inherits Puerta	(position = game.at(1, 0), salaActual = sala_3, salaSiguiente = sala_3, transportarJugadorCoordenadas = game.at(1, 1), direccion = 1) {
+object puerta_3_1 inherits Puerta	(position = game.at(1, 0), salaActual = sala_3, salaSiguiente = sala_3, transportarJugadorCoordenadas = game.at(1, 1), direccion = direccionRep.abajo()) {
 
 	override method esTraspasable() = false
+
+}
+
+object puerta_2_3 inherits Puerta	(position = game.at(19, 7), salaActual = sala_2, salaSiguiente = sala_4, transportarJugadorCoordenadas = game.at(1, 7), direccion = direccionRep.derecha()) {
+
+}
+object puerta_4_1 inherits Puerta	(position = game.at(0, 7), salaActual = sala_4, salaSiguiente = sala_2, transportarJugadorCoordenadas = game.at(18, 7), direccion = direccionRep.izquierda()) {
 
 }
 
@@ -477,12 +484,68 @@ object lagunita{
 	}
 	
 }
+
+
 class Agua{
 	var property position
 	method image()="agua.png"
 	method esTraspasable()=  self.objetosEnAgua().size()==2
 	method objetosEnAgua() = game.getObjectsIn(position)
 	method serGolpeado() { /* No hace nada */}
-	method chocar()={/* No hace nada */}
+	method chocar() {/* No hace nada */}
+	method tenerInteraccion() {/* No hace nada */}
 }
 
+class Roca{
+	const property initial_position
+	var property position = initial_position
+	
+	method image() = "Roca.png"
+	method id() = 30
+	method esTraspasable() = false
+	method serGolpeado() { /* No hace nada */}
+	method chocar() { /* No hace nada */}
+	method tenerInteraccion() {
+		if (self.haySueloRocaAdelante()){
+			self.mover(self.direccion())
+		}
+	}
+	
+	method direccion() = jugador.direccionPersonaje()
+	method direccion(algo) {/* No hace nada, sirve para la herencia de ObjetosMovibles */}	
+
+	/* Mejorar código repetido con herencia de "class ObjetosMovibles {}" */
+	
+	method mover(direccion){
+			if (self.noHayObstaculoAdelante()){
+				self.position(self.adelante())
+			}
+	}
+	method noHayObstaculoAdelante(){
+		return  (self.listaDeObjetosAdelante().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosAdelante()))
+	}
+
+	method objetosSonTraspasables(listaDeObjetos){
+		return listaDeObjetos.all{objeto => objeto.esTraspasable()}
+	}
+
+	method listaDeObjetosAdelante() = game.getObjectsIn(self.adelante())
+
+	method adelante() = direccionRep.adelante(self.position(), self.direccion())
+
+	/* Fin del código repetido */
+	
+	method haySueloRocaAdelante(){
+		return (not self.listaDeObjetosAdelante().isEmpty()) && game.getObjectsIn(self.adelante()).any({ objeto => objeto.id() == id.sueloRoca() })
+	}
+}
+
+class SueloRoca {
+	var property position
+	method image() = "Suelo_roca.png"
+	method id() = 6
+	method esTraspasable() = true
+	method serGolpeado() {/* No hace nada */}
+	method chocar() {/* No hace nada */}
+	method tenerInteraccion() {/* No hace nada */}
+}

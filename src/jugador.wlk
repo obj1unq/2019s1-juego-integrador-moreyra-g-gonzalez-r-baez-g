@@ -6,7 +6,7 @@ import gameOver.*
 
 object jugador {
 	var property position = game.at(10,2)
-	var property direccionPersonaje = direccion.abajo()
+	var property direccionPersonaje = direccionRep.abajo()
 	var property tieneLlave = false
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
@@ -92,18 +92,8 @@ object jugador {
 
 	
 //	method adelante() = direction.siguiente(self.position())
+	method adelante() = direccionRep.adelante(self.position(), self.direccionPersonaje())
 	
-	method adelante() {
-		if (direccionPersonaje == direccion.arriba() ){
-			return self.position().up(1)
-		} else if(direccionPersonaje == direccion.izquierda()) {
-			return self.position().left(1)
-		} else if(direccionPersonaje == direccion.abajo()) {
-			return self.position().down(1)
-		} else {
-			return self.position().right(1)
-		}
-	}
 	
 	method normal() = ""
 	method ataque() = "_ataque"
