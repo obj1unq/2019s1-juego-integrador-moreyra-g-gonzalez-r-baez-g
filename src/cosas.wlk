@@ -35,7 +35,7 @@ class ParedBoss {
 
 	method image() = "MuroBoss_1.png"
 
-	method id() = 1
+	method id() = 8
 
 	method esTraspasable() = false
 
@@ -361,7 +361,7 @@ object puerta_1_1 inherits Puerta	(position = game.at(7, 14), salaActual = sala_
 }
 
 object puerta_2_1 inherits Puerta	(position = game.at(1, 14), salaActual = sala_2, salaSiguiente = sala_3, transportarJugadorCoordenadas = game.at(1, 1), direccion = direccionRep.arriba()) {
-
+	override method esTraspasable() = palancaPuzzle1.estaActivada()
 }
 
 object puerta_2_2 inherits Puerta	(position = game.at(7, 0), salaActual = sala_2, salaSiguiente = sala_1, transportarJugadorCoordenadas = game.at(7, 13), direccion = direccionRep.abajo()) {
@@ -497,11 +497,11 @@ class Agua{
 }
 
 class Roca{
-	const property initial_position
-	var property position = initial_position
-	
+	var property position
+	var property initial_position = position
+		
 	method image() = "Roca.png"
-	method id() = 30
+	method id() = 5
 	method esTraspasable() = false
 	method serGolpeado() { /* No hace nada */}
 	method chocar() { /* No hace nada */}
@@ -511,12 +511,23 @@ class Roca{
 		}
 	}
 	
+//	method position(nuevaPosicion){ position = nuevaPosicion }
+//	method position(){ 
+//		if (position == null){
+//			return game.at(20, 20)
+//		} else {
+//			return position
+//		}
+//	}
+
+	
 	method direccion() = jugador.direccionPersonaje()
 	method direccion(algo) {/* No hace nada, sirve para la herencia de ObjetosMovibles */}	
 
 	/* Mejorar código repetido con herencia de "class ObjetosMovibles {}" */
 	
 	method mover(direccion){
+		if (initial_position == null) { initial_position = position }
 			if (self.noHayObstaculoAdelante()){
 				self.position(self.adelante())
 			}
@@ -548,4 +559,32 @@ class SueloRoca {
 	method serGolpeado() {/* No hace nada */}
 	method chocar() {/* No hace nada */}
 	method tenerInteraccion() {/* No hace nada */}
+}
+
+class Palanca {
+	var property position
+	var property estaActivada = false
+	var property salaActual
+	
+	method id() = 7
+	method image() =  "Palanca_" + self.activadaRep() + ".png"
+	method activadaRep() = if (estaActivada) { 1 } else { 0 }
+	method serGolpeado() { /* No hace nada */}
+	method chocar() { /* No hace nada */}
+	method esTraspasable() = false
+	method tenerInteraccion() { self.activar()
+								estaActivada = not estaActivada
+	}
+	method activar()
+}
+
+
+object palancaResetearPuzzle1 inherits Palanca (position = game.at(9, 0), salaActual = sala_2){
+	override method activar(){
+		salaActual.objetosEnMapa().filter({ objeto => (objeto.id() == id.roca() && objeto.initial_position() != null)}).forEach({ roca => roca.position(roca.initial_position())})
+			
+	}
+}
+object palancaPuzzle1 inherits Palanca (position = game.at(9, 14), salaActual = sala_2){
+	override method activar(){ /* No hace nada */}
 }

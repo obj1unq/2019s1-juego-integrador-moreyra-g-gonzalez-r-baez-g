@@ -13,7 +13,6 @@ program laLeyendaDePepita {
 	game.title("La Leyenda de Pepita")
 	game.height(15)
 	game.width(20)
-//	game.ground("Mapa_1.png")
 
 	
 
@@ -22,10 +21,9 @@ program laLeyendaDePepita {
 	
 	
 	
-
+	
 //  COLISIONES
 
-//	game.whenCollideDo(objetoX, {objetoY => objetoZ.hacerAlgo() })
 	agregarColisiones.jugador()
 
 
@@ -35,6 +33,6 @@ program laLeyendaDePepita {
 	
 //	START
 	game.start()
-		
+	
 
 }

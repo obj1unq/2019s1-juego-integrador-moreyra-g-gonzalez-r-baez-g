@@ -16,6 +16,9 @@ object id {
 	method jugador() = 4
 	method roca() = 5
 	method sueloRoca() = 6
+	method palanca() = 7
+	method paredBoss() = 8
 	method espada() = 3000000
+	
 
 }

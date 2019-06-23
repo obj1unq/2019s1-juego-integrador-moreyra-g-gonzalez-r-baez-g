@@ -48,7 +48,7 @@ object muroCompleto{
 
 	
 	method arriba(){
-		return (1..18).map({numero => new Pared(position = game.at(numero, 14), direccion = direccionRep.abajo())})
+		return (1..18).map({numero => new Pared(position = game.at(numero, 14), direccion = direccionRep.arriba())})
 	}
 	method izquierda(){
 		return (1..13).map({numero => new Pared(position = game.at(0, numero), direccion = direccionRep.izquierda())})
@@ -63,8 +63,8 @@ object muroCompleto{
 	}
 	method esquinas(){
 		return [new Pared(position = game.at(0, 0), direccion = 5), 
-				new Pared(position = game.at(0, 14), direccion = 6),
-				new Pared(position = game.at(19, 0), direccion = 7),
+				new Pared(position = game.at(0, 14), direccion = 7),
+				new Pared(position = game.at(19, 0), direccion = 6),
 				new Pared(position = game.at(19, 14), direccion = 8)]
 	}
 	
@@ -84,7 +84,7 @@ object muroBoss{
 		 	return self.defensaBoss()+self.parteIzquierdaMapa()+self.parteDerechaMapa()+self.parteArribaMapa()
 		 	}
 		 method defensaBoss(){
-			return (1 .. 13).map({ numero => new ParedBoss(position = game.at(17, numero)) })
+			return ([1, 2] + (4..13)).map({ numero => new ParedBoss(position = game.at(17, numero)) })
 					}
 		method parteIzquierdaMapa(){
 			return (1 .. 14).map({numero => new BushBoss(position = game.at(0, numero),perspectiva = 2)})
@@ -98,61 +98,53 @@ object muroBoss{
 		
 }
 // No funciona. CTRL SHIFT L => lista de comandos ||||| CTRL SHIFT C => comentar rápido
-//object estructuras{
-//	
-//	method puzzle1(){
-//		return self.puzzle(self.coordenadasPuzzle1(), (5-> 4), [(2->9), (6->7), (4->6), (1->4)], 13, 8, [direccionRep.izquierda(), direccionRep.derecha()], [(0->6)] )
-//	}
-//	
-//	method puzzle(coordenadasRocas, posicionBase, excepcionesSuelo, alto, ancho, paredes, excepcionesParedes){
-//		return self.generarRocas(posicionBase,  coordenadasRocas)
-//			   + self.generarSueloRoca(posicionBase, excepcionesSuelo, alto, ancho)
-//			   + self.generarParedes(paredes, excepcionesParedes, posicionBase, alto, ancho)
-//	}
-//	
-//	/* posicionBase es un par */
-//	method generarRocas(posicionBase, listaDeCoordenadas){
-//		return listaDeCoordenadas.map({coordenada => new Roca(initial_position = game.at(coordenada.key() + posicionBase.key() ,
-//																						 coordenada.value() + posicionBase.value() ))  })
-//	}
-//	
-//	method generarSueloRoca(posicionBase, excepciones, alto, ancho){
-//		return ((posicionBase.key() .. ancho).map{ x => (posicionBase.value() .. alto ).map { y => (x->y)
-//				}})//.remove(excepciones).map{ coordenada => new SueloRoca(position = game.at(coordenada.key() + posicionBase.key(),
-//					//																	   coordenada.value() + posicionBase.value()))}
-//	}
-//	
-//	/*paredes recibe una lista de numeros determinados por direccionRep, excepcionesParedes recibe un par */
-//	method generarParedes(paredes, excepcionesParedes, posicionBase, alto, ancho){
-//		return self.generarParedesSimples(paredes, posicionBase, alto, ancho).removeAll({ pared => self.paresACoordenadas(excepcionesParedes).anyone({coordenada=> coordenada == pared.position()}) })
-//	}
-//	
-//	method paresACoordenadas(pares){
-//		return pares.map{par => game.at(par.key(), par.value())}
-//	}
-//	
-//	method generarParedesSimples(paredes, posicionBase, alto, ancho){
-//		var listaParedes = []
-//			 paredes.map{ pared =>
-//							if (pared == direccionRep.arriba()){
-//								listaParedes + (0 .. ancho).map{ x => new Pared(direccion = direccionRep.arriba(), position = game.at(x, alto + posicionBase.value()))}
-//							} else if (pared == direccionRep.abajo()){
-//								listaParedes + (0 .. ancho).map{ x => new Pared(direccion = direccionRep.abajo(), position = game.at(x, 0 + posicionBase.value()))}
-//							} else if (pared == direccionRep.izquierda()){
-//								listaParedes + (0 .. alto).map{ y => new Pared(direccion = direccionRep.izquierda(), position = game.at(0 + posicionBase.key() , y))}
-//							} else if (pared == direccionRep.derecha()){
-//								listaParedes + (0 .. alto).map{ y => new Pared(direccion = direccionRep.derecha(), position = game.at(ancho + posicionBase.key() , y))}
-//							}
-//		
-//						}
-//			return listaParedes
-//	}
-//	
-//	method coordenadasPuzzle1() = 			   [(1->9), (2->9), (3->9), (4->9), (5->9), (6->9), (1->8), (4->8), (6->8), (3->7), (5->7),
-//												(7->7), (1->6), (4->6), (5->6), (7->6), (2->5), (6->5), (7->5), (1->4), (3->4), (4->4), 
-//												(5->4), (1->3), (3->3), (5->3), (1->2), (2->2), (3->2), (7->2), (2->1), (4->1), (5->1),
-//												(6->1), (7->1), (5->0)]
-//}
+object estructuras{
+	
+	method puzzle1(){
+		return self.generarParedes(self.paredesPuzzle1(), (5->4)) + self.generarSuelo(10, 7, [(1->1), (2->6), (4->3), (6->4)], (6->4)) + self.generarRocas(self.coordenadasPuzzle1(), (5->3))
+	}
+	
+	method coordenadasPuzzle1() = 			   [(1->9), (2->9), (3->9), (4->9), (5->9), (6->9), (1->8), (4->8), (6->8), (3->7), (5->7),
+												(7->7), (1->6), (4->6), (5->6), (7->6), (2->5), (6->5), (7->5), (1->4), (3->4), (4->4), 
+												(5->4), (1->3), (3->3), (5->3), (1->2), (2->2), (3->2), (7->2), (2->1), (4->1), (5->1),
+												(6->1), (7->1), (5->0)]
+
+	method generarSuelo(alto, ancho, excepciones, base){
+		return (self.generarSueloPlano(alto, ancho, base).filter{ suelo => not self.paresACoordenadas(excepciones, base).contains(suelo.position()) })
+	}
+	
+	method paresACoordenadas(pares, base){ 
+		return pares.map({ par => game.at(par.key() + base.key() - 1, par.value() + base.key() - 3) })
+	}
+
+
+
+
+	method generarSueloPlano(alto, ancho, base){
+		return (0 .. alto - 1).map({ altura => self.generarLineaHorizontal(ancho, base, altura) }).flatten()
+	}	
+
+	method generarLineaHorizontal(ancho, base, altura){
+		return (0 .. ancho - 1).map({ anchura => new SueloRoca(position = game.at(base.key() + anchura, base.value() + altura) )})
+	}
+	
+	method generarRocas(coordenadas, base){
+		return coordenadas.map({ coordenada => new Roca(position = game.at(coordenada.key() + base.key(), coordenada.value() + base.value() ))})
+	}
+	
+	method generarParedes(listaCoordenadas, base){
+		return listaCoordenadas.map({ coordenada => new ParedBoss(position = game.at(coordenada.key() + base.key(), coordenada.value() + base.value()))})
+	}
+	method paredesPuzzle1(){
+		return ([0,1,2,3,4,6,7,8,9]).map({ altura => (0->altura)}) + 
+				(0..9).map({ altura => (8->altura)})
+	}
+	
+	method puzzleChiquito(){
+		return [ new SueloRoca(position = game.at(7, 13)), new SueloRoca(position = game.at(8,13)),
+				 new Roca (position = game.at(7,13))]
+	}
+}
 
 object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ] 
 											 + muroCompleto.todo()
@@ -162,9 +154,10 @@ object sala_1 inherits Mapa (objetosEnMapa =   [mapa_2 ]
 											 + [boton2]
 											 + [boton3]
 											 + [estatua1,estatua2]
-											 + [alfombra]/*Cambiar asset, muy afeminado me quedó */
+											 + [alfombra]
 											 + [columna1,columna2,columna3,columna4]
 											 + [nota,caja1,caja2,caja3]
+											 + estructuras.puzzleChiquito()	
 											 + [jugador]
 											 + [columna1Top,columna2Top,columna3Top,columna4Top]
 											
@@ -174,8 +167,11 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 											 + muroCompleto.todo()
 											 + [puerta_2_1] 
 											 + [puerta_2_2]
-											 + [puerta_2_3]
-											 + spikes.spikesFila(5)											
+//											 + spikes.spikesFila(5)		
+//											 + [puerta_2_3]					   //<-
+											 + estructuras.puzzle1()           //<- de poner algo más en en sala_2, eliminar o descomentar
+											 + [palancaResetearPuzzle1]		   //<- las lineas marcadas y quitar de comentario la sala 4
+											 + [palancaPuzzle1]				   //<- y cambiarle la sala a las palancas
 											 + [jugador])   {	}
 
 
@@ -190,10 +186,14 @@ object sala_3 inherits Mapa (objetosEnMapa =   [mapa_3 ]
 											 		pepita.pedirAyuda()
 											 	}
 											 } // ataque x = 1-16, y = 1,13, boss 3-17
+											 
 
 object sala_4 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
 											 + muroCompleto.todo()
 											 + [puerta_4_1]
+											 + estructuras.puzzle1()
+											 + [palancaResetearPuzzle1]
+											 + [palancaPuzzle1]
 											 + [jugador]
 												) {}
 
