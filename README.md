@@ -1,4 +1,4 @@
-<u><h1> La leyenda de pepita </h1></u>
+<u><h1> La leyenda de Pepita </h1></u>
 <u><h2> Integrantes: </h2></u>
 Moreyra Gabriel - Gonzalez Ramiro - Baez Gonzalo 
 
