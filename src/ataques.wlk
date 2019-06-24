@@ -41,4 +41,5 @@ class RondaDeAtaques {
 		 })
 	}
 	method serGolpeado(){}	
+	method tenerInteraccion(){/* No hace nada */}	
  }
