@@ -1,5 +1,5 @@
 import wollok.game.*
-import jugador.*
+import personajes.*
 import direcciones.*
 import gameOver.*
 

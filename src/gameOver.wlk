@@ -1,10 +1,9 @@
 import wollok.game.*
-import jugador.*
+import personajes.*
 import mapas.*
 import colisiones.*
 import cosas.*
 import teclado.*
-
 object gameOver {
 	method position() = game.at(3,6)
 	method image() = "gameOver.png"
@@ -30,7 +29,7 @@ object gameOver {
 object final{
 	var property image = "cielo.png"
 	method position()= game.at(0,0)
-
+	
 	method ganaste(){
 		
 		game.onTick(2000,"espera",{

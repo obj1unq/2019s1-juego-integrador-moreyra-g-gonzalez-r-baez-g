@@ -1,5 +1,5 @@
 import wollok.game.*
-import jugador.*
+import personajes.*
 import mapas.*
 import colisiones.*
 import cosas.*
@@ -7,30 +7,16 @@ import gameOver.*
 import teclado.*
 program laLeyendaDePepita {
 
-
-	
-	//	CONFIG	
+//	CONFIG	
 	game.title("La Leyenda de Pepita")
 	game.height(15)
 	game.width(20)
-
-	
-
 //	VISUALES
 	sala_1.cargarMapa()
-	
-	
-	
-	
 //  COLISIONES
-
 	agregarColisiones.jugador()
-
-
 //	TECLADO
-
 	teclado.activar()
-	
 //	START
 	game.start()
 	

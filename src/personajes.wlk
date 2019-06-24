@@ -3,10 +3,11 @@ import direcciones.*
 import cosas.*
 import ataques.*
 import gameOver.*
+import clasesDeCosas.*
 
-object jugador {
-	var property position = game.at(10,2)
-	var property direccionPersonaje = direccionRep.abajo()
+object jugador inherits ObjetoMovible (position = game.at(10,2)){
+
+	var property direccion = direccionRep.abajo()
 	var property tieneLlave = false
 	var property estadoPj = self.normal()
 	var tiempoDeAtaque = 0
@@ -17,28 +18,21 @@ object jugador {
 		gameOver.finDelJuego()
 	}
 	method id() = 4
-	method image() = "Jugador_posicion_" + direccionPersonaje + estadoPj + ".png"
+	method image() = if (estaVivo){ 
+						"Jugador_posicion_" + direccion + estadoPj + ".png"
+						} else {
+							"Lapida.png"
+						}
 	method agarrarLlave(){
 		tieneLlave = true
 	}
 
-	method mover(direccion){
-		if(estaVivo){
-			direccionPersonaje = direccion
-			if (self.noHayObstaculoAdelante()){
-				self.position(self.adelante())
-			}
+	method mover(direccion_){
+		if(estaVivo){ 
+			direccion = direccion_
+			self.moverse(direccion_)
 		}
 	}
-	method noHayObstaculoAdelante(){
-		return  (self.listaDeObjetosAdelante().isEmpty() || self.objetosSonTraspasables(self.listaDeObjetosAdelante()))
-	}
-
-	method objetosSonTraspasables(listaDeObjetos){
-		return listaDeObjetos.all{objeto => objeto.esTraspasable()}
-	}
-
-	method listaDeObjetosAdelante() = game.getObjectsIn(self.adelante())
 	
 	method atacar(){
 		if (estaVivo && tiempoDeAtaque == 0){ 
@@ -48,20 +42,19 @@ object jugador {
 			
 		}
 	}
-	
 
 	method atacarPrima(){
 
 		var posicionInicial = self.position()
-		var direccionInicial = self.direccionPersonaje()
+		var direccionInicial = self.direccion()
 			
-		espada.direccion(direccionPersonaje)
+		espada.direccion(direccion)
 		espada.position(self.adelante())
 		self.estadoPj(self.ataque())
 		espada.agregarVisual()
 		
 		game.onTick(10, "ataque", {
-			if (tiempoDeAtaque >= 10 || self.position() != posicionInicial || self.direccionPersonaje() != direccionInicial ){
+			if (tiempoDeAtaque >= 10 || self.position() != posicionInicial || self.direccion() != direccionInicial ){
 				espada.removerVisual()
 				game.removeTickEvent("ataque")
 				self.estadoPj(self.normal())
@@ -70,11 +63,6 @@ object jugador {
 				tiempoDeAtaque ++
 			}
 		})
-//		game.onTick(300, "ataque", {espada.removerVisual() 
-//									self.estadoPj(self.normal())
-//									game.removeTickEvent("ataque")
-//		})
-
 		
 	}
 	method defender(){
@@ -91,9 +79,6 @@ object jugador {
 	}
 
 	
-//	method adelante() = direction.siguiente(self.position())
-	method adelante() = direccionRep.adelante(self.position(), self.direccionPersonaje())
-	
 	
 	method normal() = ""
 	method ataque() = "_ataque"
@@ -108,7 +93,7 @@ object pepita{
 	method id() = 3
 	
 	method serGolpeado(){ game.say(self, "Gracias!") }	
-	method tenerInteraccion(){ game.say(self, "que querei?")}
+	method tenerInteraccion(){ game.say(self, "hola, sacame de aqui")}
 	method pedirAyuda(){game.say(self, "AYUDA!")}	
 }
 
@@ -134,7 +119,7 @@ object boss{
 	method atacar(sala){
 		if(self.estaVivo()&&jugador.estaVivo()){
 		self.atacarP(sala)
-		game.onTick(8500,"se puede atacar vos",{self.sePuedeAtacar(true) game.removeTickEvent("se puede atacar vos")})
+		game.onTick(8500,"se puede atacar boss",{self.sePuedeAtacar(true) game.removeTickEvent("se puede atacar boss")})
 		game.onTick(12000,"recursion",{self.atacar(sala) game.removeTickEvent("recursion")})
 		}	
 	}
@@ -150,19 +135,10 @@ object boss{
 			sePuedeAtacar = false
 		}
 	}
-	/*method rondaDeAtaque1(sala){
-		if(self.vida()==3){
-		tiempoDeAtaque = 20000
-		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(1000*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
-		[2,4,6,8,10,12,14,16].forEach{numero=> game.onTick(1000*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFilaEscape(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
-		
-		}
 
-	}*/
 	method rondaDeAtaque(sala){	
 		[1,3,5,7,9,11,13,15].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFila(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero) self.sePuedeAtacar(false)})}
-		[2,4,6,8,10,12,14,16].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFilaEscape(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}
-//		game.onTick(15000,"asdasdasd",{self.atacar(sala) game.removeTickEvent("asdasdasd")})	
+		[2,4,6,8,10,12,14,16].forEach{numero=> game.onTick(500*numero,""+numero,{new RondaDeAtaques (ataques = self.ataqueFilaEscape(numero)).lanzarAtaque(sala) game.removeTickEvent(""+numero)})}	
 	}
 	
 	method ataqueFila(n){

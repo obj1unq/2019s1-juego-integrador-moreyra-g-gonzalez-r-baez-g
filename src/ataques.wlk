@@ -1,5 +1,5 @@
 import wollok.game.*
-import jugador.*
+import personajes.*
 import mapas.*
 import colisiones.*
 import direcciones.*
@@ -7,7 +7,9 @@ import direcciones.*
 class RondaDeAtaques {
 	const property ataques = []
 	method lanzarAtaque(sala){
-		ataques.forEach({ataque => ataque.lanzarAtaque(sala)})
+		ataques.forEach({ataque => if (jugador.estaVivo())
+										{ataque.lanzarAtaque(sala)}
+		})
 	}
 }
  class Ataque{

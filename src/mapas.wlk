@@ -1,7 +1,8 @@
 import wollok.game.*
 import cosas.*
-import jugador.*
+import personajes.*
 import direcciones.*
+import clasesDeCosas.*
 
 class Mapa {
 	var property objetosEnMapa
@@ -73,12 +74,7 @@ object muroCompleto{
 	}
 }
 
-object direccion{
-	method arriba() = 3
-	method abajo() = 1
-	method izquierda() = 2
-	method derecha() = 4
-}
+
 object muroBoss{
 		 method todo(){
 		 	return self.defensaBoss()+self.parteIzquierdaMapa()+self.parteDerechaMapa()+self.parteArribaMapa()
@@ -97,7 +93,7 @@ object muroBoss{
 		}
 		
 }
-// No funciona. CTRL SHIFT L => lista de comandos ||||| CTRL SHIFT C => comentar rápido
+
 object estructuras{
 	
 	method puzzle1(){
@@ -167,33 +163,23 @@ object sala_2 inherits Mapa (objetosEnMapa =   [mapa_1 ]
 											 + muroCompleto.todo()
 											 + [puerta_2_1] 
 											 + [puerta_2_2]
-//											 + spikes.spikesFila(5)		
-//											 + [puerta_2_3]					   //<-
-											 + estructuras.puzzle1()           //<- de poner algo más en en sala_2, eliminar o descomentar
-											 + [palancaResetearPuzzle1]		   //<- las lineas marcadas y quitar de comentario la sala 4
-											 + [palancaPuzzle1]				   //<- y cambiarle la sala a las palancas
+											 + estructuras.puzzle1()          
+											 + [palancaResetearPuzzle1]		 
+											 + [palancaPuzzle1]				   
 											 + [jugador])   {	}
 
 
 
 object sala_3 inherits Mapa (objetosEnMapa =   [mapa_3 ] 
 											 + muroCompleto.todo() + lagunita.aguaEnFila(15)+lagunita.aguaEnFila(16)+ muroBoss.todo()+[puerta_3_1] + [boss] + [pepita] + [jaula]
-											 + [mascaraPiso]+
+											 +
 											 [puenteParte1,puenteParte2,puenteParte2_2, puenteParte3]
 											 + [jugador])   {
 											 	override method activarBoss(){
 											 		boss.atacar(self)
 											 		pepita.pedirAyuda()
 											 	}
-											 } // ataque x = 1-16, y = 1,13, boss 3-17
+											 } 
 											 
 
-object sala_4 inherits Mapa (objetosEnMapa =   [mapa_1 ] 
-											 + muroCompleto.todo()
-											 + [puerta_4_1]
-											 + estructuras.puzzle1()
-											 + [palancaResetearPuzzle1]
-											 + [palancaPuzzle1]
-											 + [jugador]
-												) {}
 
