@@ -1,2 +1,3 @@
 # La leyenda de pepita
-Inserte la descripción de su proyecto aquí
+Integrantes:
+Moreyra Gabriel - Gonzalez Ramiro - Baez Gonzalo 
