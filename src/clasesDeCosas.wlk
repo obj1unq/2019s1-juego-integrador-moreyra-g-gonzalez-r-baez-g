@@ -47,7 +47,7 @@ class Roca inherits ObjetoMovible{
 	var property initial_position = position
 		
 	method image() = "Roca.png"
-	method id() = 5
+	method id() = id.roca()
 	method esTraspasable() = false
 	method serGolpeado() { /* No hace nada */}
 	method chocar() { /* No hace nada */}
@@ -74,7 +74,7 @@ class Roca inherits ObjetoMovible{
 class SueloRoca {
 	var property position
 	method image() = "Suelo_roca.png"
-	method id() = 6
+	method id() = id.sueloRoca()
 	method esTraspasable() = true
 	method serGolpeado() {/* No hace nada */}
 	method chocar() {/* No hace nada */}
@@ -86,7 +86,7 @@ class Palanca {
 	var property estaActivada = false
 	var property salaActual
 	
-	method id() = 7
+	method id() = id.palanca()
 	method image() =  "Palanca_" + self.activadaRep() + ".png"
 	method activadaRep() = if (estaActivada) { 1 } else { 0 }
 	method serGolpeado() { /* No hace nada */}
@@ -103,7 +103,7 @@ class ColumnaBot{
 		
 	var property position 
 	
-	method id() = 14
+	method id() = id.columnabot()
 	
 	method image() = "colBot.png"
 	
@@ -139,7 +139,7 @@ class Caja {
 
 	method esTraspasable() = false
 
-	method id() = 12
+	method id() = id.caja()
 
 	method chocar() {/* No hace nada */}
 
@@ -160,7 +160,7 @@ class Estatua{
 	
 	method image()
 	
-	method id() = 13
+	method id() = id.estatua()
 	
 	method esTraspasable() = false
 	
@@ -179,7 +179,7 @@ class Pared {
 
 	method image() = "Pared_" + direccion + ".png"
 
-	method id() = 1
+	method id() = id.pared()
 
 	method esTraspasable() = self.hayPuertaEn(position)
 
@@ -201,7 +201,7 @@ class ParedBoss {
 
 	method image() = "MuroBoss_1.png"
 
-	method id() = 8
+	method id() = id.paredBoss()
 
 	method esTraspasable() = false
 
@@ -239,7 +239,7 @@ class Puerta {
 	const property transportarJugadorCoordenadas
 	const direccion
 
-	method id() = 2
+	method id() = id.puerta()
 
 	method image() = "Puerta_" + direccion + ".png"
 
@@ -287,7 +287,7 @@ class Boton {
 
 	method esTraspasable() = true
 
-	method id() = 9
+	method id() = id.boton()
 	
 	method chocar() {
 		estaActivado = true

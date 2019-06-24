@@ -18,7 +18,7 @@ object nota {
 
 	method esTraspasable() = true
 
-	method id() = 10
+	method id() = id.nota()
 	
 	method chocar() {
 		if (not fueLeida){
@@ -45,7 +45,7 @@ object llave {
 
 	method esTraspasable() = true
 
-	method id() = 11
+	method id() = id.llave()
 	
 	method chocar() {
 		jugador.agarrarLlave()
@@ -209,7 +209,7 @@ object espada {
 	method serGolpeado(){/* No hace nada */}	
 	method tenerInteraccion(){/* No hace nada */}	
 	method chocar(){ /* No hace nada */}
-	method id()=3000000
+	method id()=id.espada()
 }
 
 object jaula{

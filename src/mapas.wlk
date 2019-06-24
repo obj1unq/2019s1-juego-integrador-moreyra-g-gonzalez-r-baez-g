@@ -3,6 +3,7 @@ import cosas.*
 import personajes.*
 import direcciones.*
 import clasesDeCosas.*
+import colisiones.*
 
 class Mapa {
 	var property objetosEnMapa
@@ -30,18 +31,18 @@ class Mapa {
 object mapa_1 {
 	method position() = game.at(0, 0)
 	method image() = "Mapa_1.png"
-	method id() = 0
+	method id() = id.mapa_1()
 } 
 
 object mapa_2{
 	method position() = game.at(0, 0)
 	method image() = "MakingMap1.png"
-	method id() = 5
+	method id() = id.mapa_2()
 }
 object mapa_3{
 	method position() = game.at(0, 0)
 	method image() = "mapa3.png"
-	method id() = 5
+	method id() = id.mapa_3()
 }
 
 object muroCompleto{

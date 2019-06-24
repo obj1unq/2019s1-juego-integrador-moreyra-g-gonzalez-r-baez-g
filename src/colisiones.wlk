@@ -26,5 +26,9 @@ object id {
 	method estatua() = 13
 	method columnabot() = 14
 	method gameOver() = 232323
+	method mapa_1() = 15
+	method mapa_2() = 16
+	method mapa_3() = 17
+	method boss() = 27 
 
 }

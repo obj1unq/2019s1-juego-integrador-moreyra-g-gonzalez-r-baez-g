@@ -4,6 +4,7 @@ import cosas.*
 import ataques.*
 import gameOver.*
 import clasesDeCosas.*
+import colisiones.*
 
 object jugador inherits ObjetoMovible (position = game.at(10,2)){
 
@@ -17,7 +18,7 @@ object jugador inherits ObjetoMovible (position = game.at(10,2)){
 		self.estaVivo(false)
 		gameOver.finDelJuego()
 	}
-	method id() = 4
+	method id() = id.jugador()
 	method image() = if (estaVivo){ 
 						"Jugador_posicion_" + direccion + estadoPj + ".png"
 						} else {
@@ -90,7 +91,7 @@ object pepita{
 	method position() = game.at(18,13)
 	method image() = "pepita.png" 
 	method esTraspasable() = false
-	method id() = 3
+	method id() = id.pepita()
 	
 	method serGolpeado(){ game.say(self, "Gracias!") }	
 	method tenerInteraccion(){ game.say(self, "hola, sacame de aqui")}
@@ -109,7 +110,7 @@ object boss{
 						}else{
 							"bossDefensivo.png"
 						}
-	method id() = 27
+	method id() = id.boss()
 	method esTraspasable()= not self.estaVivo()
 	method estaVivo(){
 		return vida>0
