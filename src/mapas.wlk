@@ -98,7 +98,7 @@ object muroBoss{
 object estructuras{
 	
 	method puzzle1(){
-		return self.generarParedes(self.paredesPuzzle1(), (5->4)) + self.generarSuelo(10, 7, [(1->1), (2->6), (4->3), (6->4)], (6->4)) + self.generarRocas(self.coordenadasPuzzle1(), (5->3))
+		return self.generarParedes(self.paredesPuzzle1(), (5->4)) + self.generarSuelo(10, 7, [(0->0), (1->5), (3->2), (5->3)], (6->4)) + self.generarRocas(self.coordenadasPuzzle1(), (5->3))
 	}
 	
 	method coordenadasPuzzle1() = 			   [(1->9), (2->9), (3->9), (4->9), (5->9), (6->9), (1->8), (4->8), (6->8), (3->7), (5->7),
@@ -111,7 +111,7 @@ object estructuras{
 	}
 	
 	method paresACoordenadas(pares, base){ 
-		return pares.map({ par => game.at(par.key() + base.key() - 1, par.value() + base.key() - 3) })
+		return pares.map({ par => game.at(par.key() + base.key(), par.value() + base.value()) })
 	}
 
 
